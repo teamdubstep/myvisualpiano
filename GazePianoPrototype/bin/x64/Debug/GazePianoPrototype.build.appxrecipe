@@ -10,22 +10,22 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>b33e74d2-96ac-4c80-bad8-aad9fad15003</PackageIdentityName>
     <PackageIdentityPublisher>CN=Parker</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\GazePianoPrototype.exe">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\GazePianoPrototype.exe">
       <PackagePath>entrypoint\GazePianoPrototype.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Wesley Wei\.nuget\packages\microsoft.toolkit.uwp.input.gazeinteraction\5.1.0\runtimes\win10-x64\native\Microsoft.Toolkit.Uwp.Input.GazeInteraction.dll">
@@ -40,118 +40,118 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.17763.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\close.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\close.png">
       <PackagePath>Assets\close.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\help.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\home.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\home.png">
       <PackagePath>Assets\home.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\play_music.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\play_music.png">
       <PackagePath>Assets\play_music.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\record.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\record.png">
       <PackagePath>Assets\record.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\view_records.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\view_records.png">
       <PackagePath>Assets\view_records.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\A.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\A.chord.mp3">
       <PackagePath>Notes\A.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\A.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\A.mp3">
       <PackagePath>Notes\A.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\B.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\B.chord.mp3">
       <PackagePath>Notes\B.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\B.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\B.mp3">
       <PackagePath>Notes\B.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\C.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\C.chord.mp3">
       <PackagePath>Notes\C.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\C.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\C.mp3">
       <PackagePath>Notes\C.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\D.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\D.chord.mp3">
       <PackagePath>Notes\D.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\D.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\D.mp3">
       <PackagePath>Notes\D.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\E.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\E.chord.mp3">
       <PackagePath>Notes\E.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\E.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\E.mp3">
       <PackagePath>Notes\E.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\F.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\F.chord.mp3">
       <PackagePath>Notes\F.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\F.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\F.mp3">
       <PackagePath>Notes\F.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\G.chord.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\G.chord.mp3">
       <PackagePath>Notes\G.chord.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Notes\G.mp3">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Notes\G.mp3">
       <PackagePath>Notes\G.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\GazePianoPrototype.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\GazePianoPrototype.xr.xml">
       <PackagePath>GazePianoPrototype.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\MenuPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\MenuPage.xbf">
       <PackagePath>MenuPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\PianoPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\PianoPage.xbf">
       <PackagePath>PianoPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Wesley Wei\Desktop\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\Core\GazePianoPrototype.exe">
+    <AppxPackagedFile Include="C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\bin\x64\Debug\Core\GazePianoPrototype.exe">
       <PackagePath>GazePianoPrototype.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

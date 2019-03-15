@@ -18,7 +18,7 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <TextBlock Foreground="#00FFFF" FontSize="64" FontWeight="Bold"
                                HorizontalAlignment="Center">
-                        Project Dubstep
+                        My Visual Piano
                 </TextBlock>
                 <TextBlock Foreground="#00FFFF" FontSize="48" HorizontalAlignment="Center" >
                         Play live music hands free

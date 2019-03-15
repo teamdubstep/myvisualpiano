@@ -8285,11 +8285,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wesley Wei\\Desktop\\GazePianoPrototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
+      "projectUniqueName": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\GazePianoPrototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
       "projectName": "GazePianoPrototype",
-      "projectPath": "C:\\Users\\Wesley Wei\\Desktop\\GazePianoPrototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
+      "projectPath": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\GazePianoPrototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
       "packagesPath": "C:\\Users\\Wesley Wei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wesley Wei\\Desktop\\GazePianoPrototype\\GazePianoPrototype\\obj\\",
+      "outputPath": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\GazePianoPrototype\\GazePianoPrototype\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
