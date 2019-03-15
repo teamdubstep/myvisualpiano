@@ -26,6 +26,10 @@ namespace GazePianoPrototype
     {
         enum PageState { Normal, ChordConfirm, RetNormal }
 
+        private readonly Brush BlueBrush = new SolidColorBrush(Windows.UI.Colors.Blue);
+        private readonly Brush RedBrush = new SolidColorBrush(Windows.UI.Colors.Red);
+        private Brush DefaultBrush;
+
         private PageState _currentState;
 
         private PageState currentState
@@ -42,9 +46,10 @@ namespace GazePianoPrototype
 
         public PianoPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             GazeInput.SetIsCursorVisible(this, true);
             currentState = PageState.Normal;
+            DefaultBrush = TL.Background;
         }
 
         private string queuedNote = string.Empty;
@@ -52,7 +57,7 @@ namespace GazePianoPrototype
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var UIE = sender as Button;
-            if (UIE.Content as string == "PAUSE") 
+            if (UIE.Content as string == "PAUSE")
             {
                 // TODO: Navigate to pause menu
                 return;
@@ -65,37 +70,51 @@ namespace GazePianoPrototype
                     case "ML":
                         BlankButtons();
                         TL.Content = "Chord";
+                        TL.Background = BlueBrush;
                         BL.Content = "Cancel";
+                        BL.Background = RedBrush;
                         break;
                     case "TL":
                         BlankButtons();
                         ML.Content = "Chord";
+                        ML.Background = BlueBrush;
                         TM.Content = "Cancel";
+                        TM.Background = RedBrush;
                         break;
                     case "TM":
                         BlankButtons();
                         TL.Content = "Chord";
+                        TL.Background = BlueBrush;
                         TR.Content = "Cancel";
+                        TR.Background = RedBrush;
                         break;
                     case "TR":
                         BlankButtons();
                         TM.Content = "Chord";
+                        TM.Background = BlueBrush;
                         MR.Content = "Cancel";
+                        MR.Background = RedBrush;
                         break;
                     case "MR":
                         BlankButtons();
                         TR.Content = "Chord";
+                        TR.Background = BlueBrush;
                         BR.Content = "Cancel";
+                        BR.Background = RedBrush;
                         break;
                     case "BR":
                         BlankButtons();
                         MR.Content = "Chord";
+                        MR.Background = BlueBrush;
                         BM.Content = "Cancel";
+                        BM.Background = RedBrush;
                         break;
                     case "BM":
                         BlankButtons();
                         BL.Content = "Chord";
+                        BL.Background = BlueBrush;
                         BR.Content = "Cancel";
+                        BR.Background = RedBrush;
                         break;
                 }
 
@@ -143,9 +162,18 @@ namespace GazePianoPrototype
             BR.Content = "";
             BM.Content = "";
             BL.Content = "";
+
+            ML.Background = DefaultBrush;
+            TL.Background = DefaultBrush;
+            TM.Background = DefaultBrush;
+            TR.Background = DefaultBrush;
+            MR.Background = DefaultBrush;
+            BR.Background = DefaultBrush;
+            BM.Background = DefaultBrush;
+            BL.Background = DefaultBrush;
         }
 
-        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Center_Tapped(object sender, RoutedEventArgs e)
         {
             if (currentState == PageState.ChordConfirm)
             {
@@ -163,6 +191,16 @@ namespace GazePianoPrototype
                 BR.Content = "F";
                 BM.Content = "G";
                 BL.Content = "PAUSE";
+
+                ML.Background = DefaultBrush;
+                TL.Background = DefaultBrush;
+                TM.Background = DefaultBrush;
+                TR.Background = DefaultBrush;
+                MR.Background = DefaultBrush;
+                BR.Background = DefaultBrush;
+                BM.Background = DefaultBrush;
+                BL.Background = DefaultBrush;
+
                 currentState = PageState.Normal;
             }
         }

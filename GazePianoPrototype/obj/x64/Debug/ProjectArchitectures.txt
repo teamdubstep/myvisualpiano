@@ -1,1 +1,0 @@
-C:\Users\Wesley Wei\Documents\InfoCapstone\GazePianoPrototype\GazePianoPrototype\GazePianoPrototype.csproj;x64
