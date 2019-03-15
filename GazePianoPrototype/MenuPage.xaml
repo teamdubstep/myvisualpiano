@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="GazePianoPrototype.MenuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GazePianoPrototype"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
+    gaze:GazeInput.Interaction="Enabled"
+    Background="#1C4587">
+
+    <Grid Margin="100">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Return Home" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="HomeButtonClick" 
+                                     gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Stretch="Uniform" Source="Assets/home.png" />
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Record" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick"
+                                    gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Stretch="Uniform" Source="Assets/record.png" />
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick"
+                                 gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Stretch="Uniform" Source="Assets/help.png" />
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Close" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="CloseButtonClick"
+                                 gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Stretch="Uniform" Source="Assets/close.png" />
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

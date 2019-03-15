@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace GazePianoPrototype
+{
+    class MenuResults
+    {
+        public static Boolean displayMenu = true;
+    }
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class MenuPage : Page
+    {
+        public MenuPage()
+        {
+            this.InitializeComponent();
+        }
+
+        private void HomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Home button click");
+            MenuResults.displayMenu = true;
+            //(Window.Current.Content as Frame)?.Navigate(typeof(MainPage), null);
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void HelpButtonClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Help button click");
+            MenuResults.displayMenu = true;
+        }
+
+        private void RecordButtonClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Record button click");
+            MenuResults.displayMenu = true;
+        }
+
+        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Close button click");
+            //this.Frame.Navigate(typeof(MainPage));
+            MenuResults.displayMenu = true;
+            this.Frame.GoBack();
+        }
+    }
+}
