@@ -146,34 +146,31 @@
     <Content Include="Assets\play_music.png" />
     <Content Include="Assets\record.png" />
     <Content Include="Assets\view_records.png" />
-    <Content Include="Notes\A.chord.mp3" />
-    <Content Include="Notes\A.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\B.chord.mp3" />
-    <Content Include="Notes\B.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\C.chord.mp3" />
-    <Content Include="Notes\C.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\D.chord.mp3" />
-    <Content Include="Notes\D.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\E.chord.mp3" />
-    <Content Include="Notes\E.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\F.chord.mp3" />
-    <Content Include="Notes\F.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Notes\G.chord.mp3" />
-    <Content Include="Notes\G.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Notes\A.major.mp3" />
+    <Content Include="Notes\A.minor.mp3" />
+    <Content Include="Notes\A.mp3" />
+    <Content Include="Notes\B.major.mp3" />
+    <Content Include="Notes\B.minor.mp3" />
+    <Content Include="Notes\B.mp3" />
+    <Content Include="Notes\Bb.mp3" />
+    <Content Include="Notes\C.major.mp3" />
+    <Content Include="Notes\C.minor.mp3" />
+    <Content Include="Notes\C.mp3" />
+    <Content Include="Notes\D.major.mp3" />
+    <Content Include="Notes\D.minor.mp3" />
+    <Content Include="Notes\D.mp3" />
+    <Content Include="Notes\Dd.mp3" />
+    <Content Include="Notes\E.major.mp3" />
+    <Content Include="Notes\E.minor.mp3" />
+    <Content Include="Notes\E.mp3" />
+    <Content Include="Notes\Eb.mp3" />
+    <Content Include="Notes\F.major.mp3" />
+    <Content Include="Notes\F.minor.mp3" />
+    <Content Include="Notes\F.mp3" />
+    <Content Include="Notes\G.major.mp3" />
+    <Content Include="Notes\G.minor.mp3" />
+    <Content Include="Notes\G.mp3" />
+    <Content Include="Notes\Gb.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

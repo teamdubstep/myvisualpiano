@@ -26,7 +26,25 @@ namespace GazePianoPrototype
 
         public static string PlayNote { get; set; }
 
-        public static int Octave { get; set; } = 0;
+        private static int _octave;
+        public static int Octave
+        {
+            get
+            {
+                return _octave;
+            }
+            set
+            {
+                if (value < 0 || value > 7)
+                {
+                    return;
+                }
+                else
+                {
+                    _octave = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,6 +54,7 @@ namespace GazePianoPrototype
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Octave = 3;
         }
 
         /// <summary>
