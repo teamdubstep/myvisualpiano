@@ -70,77 +70,8 @@ namespace GazePianoPrototype
             InitializeComponent();
             GazeInput.SetIsCursorVisible(this, true);
             CurrentMode = PianoMode.SingleNote;
-            Octave = 3;
-
-            noteToInt = new Dictionary<string, int>();
-            noteToInt.Add("C", 0);
-            noteToInt.Add("C#", 1);
-            noteToInt.Add("Db", 1);
-            noteToInt.Add("D", 2);
-            noteToInt.Add("D#", 3);
-            noteToInt.Add("Eb", 3);
-            noteToInt.Add("E", 4);
-            noteToInt.Add("F", 5);
-            noteToInt.Add("F#", 6);
-            noteToInt.Add("Gb", 6);
-            noteToInt.Add("G", 7);
-            noteToInt.Add("G#", 8);
-            noteToInt.Add("Ab", 8);
-            noteToInt.Add("A", 9);
-            noteToInt.Add("A#", 10);
-            noteToInt.Add("Bb", 10);
-            noteToInt.Add("B", 11);
-
-            majorChords = new Dictionary<String, String[]>();
-            majorChords.Add("C", new String[] { "C", "E", "G" });
-            majorChords.Add("C#", new String[] { "C#", "E#", "G#" });
-            majorChords.Add("Db", new String[] { "Db", "F", "Ab" });
-            majorChords.Add("D", new String[] { "D", "F#", "A" });
-            majorChords.Add("Eb", new String[] { "Eb", "G", "Bb" });
-            majorChords.Add("E", new String[] { "E", "G#", "B" });
-            majorChords.Add("Fb", new String[] { "Fb", "Ab", "Cb" });
-            majorChords.Add("F", new String[] { "F", "A", "C" });
-            majorChords.Add("F#", new String[] { "F#", "A#", "C#" });
-            majorChords.Add("Gb", new String[] { "Gb", "Bb", "Db" });
-            majorChords.Add("G", new String[] { "G", "B", "D" });
-            majorChords.Add("G#", new String[] { "G#", "B#", "D#" });
-            majorChords.Add("Ab", new String[] { "Ab", "C", "Eb" });
-            majorChords.Add("A", new String[] { "A", "C#", "E" });
-            majorChords.Add("Bb", new String[] { "Bb", "D", "F" });
-            majorChords.Add("B", new String[] { "B", "D#", "F#" });
-            majorChords.Add("Cb", new String[] { "Cb", "Eb", "Gb" });
-
-            minorChords = new Dictionary<String, String[]>();
-            minorChords.Add("C", new String[] { "C", "Eb", "G" });
-            minorChords.Add("C#", new String[] { "C#", "E", "G#" });
-            minorChords.Add("Db", new String[] { "Db", "Fb", "Ab" });
-            minorChords.Add("D", new String[] { "D", "F", "A" });
-            minorChords.Add("D#", new String[] { "D#", "F#", "A#" });
-            minorChords.Add("Eb", new String[] { "Eb", "Gb", "Bb" });
-            minorChords.Add("E", new String[] { "E", "G", "B" });
-            minorChords.Add("E#", new String[] { "E#", "G#", "B#" });
-            minorChords.Add("F", new String[] { "F", "Ab", "C" });
-            minorChords.Add("F#", new String[] { "F#", "A", "C#" });
-            minorChords.Add("G", new String[] { "G", "Bb", "D" });
-            minorChords.Add("G#", new String[] { "G#", "B", "D#" });
-            minorChords.Add("Ab", new String[] { "Ab", "B", "Eb" });
-            minorChords.Add("A", new String[] { "A", "C", "E" });
-            minorChords.Add("A#", new String[] { "A#", "C#", "E#" });
-            minorChords.Add("Bb", new String[] { "Bb", "Db", "F" });
-            minorChords.Add("B", new String[] { "B", "D", "F#" });
-
-            if (CurrentMode == PianoMode.MajorChord)
-            {
-                GetPianoChord("C", 3);
-            }
-            else if (CurrentMode == PianoMode.MinorChord)
-            {
-                GetPianoChord("C", 3);
-            }
-            else
-            {
-                GetPianoNote("C", 3);
-            }
+            LoadNotesAndChords();
+            Octave = 3;            
         }
 
         /// <summary>
@@ -253,6 +184,7 @@ namespace GazePianoPrototype
             {
                 this.CurrentMode = PianoMode.MinorChord;
                 (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
+                MajorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
 
             }
             else
@@ -274,6 +206,7 @@ namespace GazePianoPrototype
             {
                 this.CurrentMode = PianoMode.MajorChord;
                 (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
+                MinorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
             }
             else
             {
@@ -287,6 +220,75 @@ namespace GazePianoPrototype
             this.Octave++;
         }
 
+        /// <summary>
+        /// Loads the MIDI mappings for notes and chords
+        /// </summary>
+        private void LoadNotesAndChords()
+        {
+            noteToInt = new Dictionary<string, int>();
+            noteToInt.Add("C", 0);
+            noteToInt.Add("C#", 1);
+            noteToInt.Add("Db", 1);
+            noteToInt.Add("D", 2);
+            noteToInt.Add("D#", 3);
+            noteToInt.Add("Eb", 3);
+            noteToInt.Add("E", 4);
+            noteToInt.Add("F", 5);
+            noteToInt.Add("F#", 6);
+            noteToInt.Add("Gb", 6);
+            noteToInt.Add("G", 7);
+            noteToInt.Add("G#", 8);
+            noteToInt.Add("Ab", 8);
+            noteToInt.Add("A", 9);
+            noteToInt.Add("A#", 10);
+            noteToInt.Add("Bb", 10);
+            noteToInt.Add("B", 11);
+
+            majorChords = new Dictionary<String, String[]>();
+            majorChords.Add("C", new String[] { "C", "E", "G" });
+            majorChords.Add("C#", new String[] { "C#", "E#", "G#" });
+            majorChords.Add("Db", new String[] { "Db", "F", "Ab" });
+            majorChords.Add("D", new String[] { "D", "F#", "A" });
+            majorChords.Add("Eb", new String[] { "Eb", "G", "Bb" });
+            majorChords.Add("E", new String[] { "E", "G#", "B" });
+            majorChords.Add("Fb", new String[] { "Fb", "Ab", "Cb" });
+            majorChords.Add("F", new String[] { "F", "A", "C" });
+            majorChords.Add("F#", new String[] { "F#", "A#", "C#" });
+            majorChords.Add("Gb", new String[] { "Gb", "Bb", "Db" });
+            majorChords.Add("G", new String[] { "G", "B", "D" });
+            majorChords.Add("G#", new String[] { "G#", "B#", "D#" });
+            majorChords.Add("Ab", new String[] { "Ab", "C", "Eb" });
+            majorChords.Add("A", new String[] { "A", "C#", "E" });
+            majorChords.Add("Bb", new String[] { "Bb", "D", "F" });
+            majorChords.Add("B", new String[] { "B", "D#", "F#" });
+            majorChords.Add("Cb", new String[] { "Cb", "Eb", "Gb" });
+
+            minorChords = new Dictionary<String, String[]>();
+            minorChords.Add("C", new String[] { "C", "Eb", "G" });
+            minorChords.Add("C#", new String[] { "C#", "E", "G#" });
+            minorChords.Add("Db", new String[] { "Db", "Fb", "Ab" });
+            minorChords.Add("D", new String[] { "D", "F", "A" });
+            minorChords.Add("D#", new String[] { "D#", "F#", "A#" });
+            minorChords.Add("Eb", new String[] { "Eb", "Gb", "Bb" });
+            minorChords.Add("E", new String[] { "E", "G", "B" });
+            minorChords.Add("E#", new String[] { "E#", "G#", "B#" });
+            minorChords.Add("F", new String[] { "F", "Ab", "C" });
+            minorChords.Add("F#", new String[] { "F#", "A", "C#" });
+            minorChords.Add("G", new String[] { "G", "Bb", "D" });
+            minorChords.Add("G#", new String[] { "G#", "B", "D#" });
+            minorChords.Add("Ab", new String[] { "Ab", "B", "Eb" });
+            minorChords.Add("A", new String[] { "A", "C", "E" });
+            minorChords.Add("A#", new String[] { "A#", "C#", "E#" });
+            minorChords.Add("Bb", new String[] { "Bb", "Db", "F" });
+            minorChords.Add("B", new String[] { "B", "D", "F#" });
+        }
+
+        /// <summary>
+        /// Get the MIDI byte mapping for a chord
+        /// </summary>
+        /// <param name="note">Desired note (e.g. C or F#)</param>
+        /// <param name="octave">Desired Octave</param>
+        /// <returns></returns>
         private byte GetPianoNote(String note, int octave)
         {
             int intNote = -1;
@@ -301,6 +303,12 @@ namespace GazePianoPrototype
             return (byte)intNote;
         }
 
+        /// <summary>
+        /// Get a byte array of notes for a chord
+        /// </summary>
+        /// <param name="note"></param>
+        /// <param name="octave"></param>
+        /// <returns></returns>
         private byte[] GetPianoChord(String note, int octave)
         {
             byte[] intChord = new byte[3];

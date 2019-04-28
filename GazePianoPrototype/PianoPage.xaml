@@ -40,11 +40,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="OctaveDown_Click"/>
-            <Button Grid.Column="1" Content="Minor" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="MinorMode_Click"/>
-            <Button Grid.Column="2" Content="=" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="Home_Click" />
-            <Button Grid.Column="3" Content="Major" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="MajorClick_Click"/>
-            <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="OctaveUp_Click"/>
+            <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveDown_Click"/>
+            <Button Grid.Column="1" Content="Minor" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MinorMode_Click" x:Name="MinorModeButton"/>
+            <Button Grid.Column="2" Content="=" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="Home_Click" />
+            <Button Grid.Column="3" Content="Major" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MajorClick_Click" x:Name="MajorModeButton"/>
+            <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveUp_Click"/>
 
         </Grid>
         <!-- Center Indicators -->
