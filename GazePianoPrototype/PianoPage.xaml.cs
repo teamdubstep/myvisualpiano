@@ -177,6 +177,7 @@ namespace GazePianoPrototype
             {
                 synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
             }
+            playingNotes = notes;
         }
 
         /// <summary>
@@ -223,8 +224,17 @@ namespace GazePianoPrototype
             Button button = sender as Button;
             if (e.PointerState == PointerState.Fixation)
             {
-                // TODO: Map from button label to midi notes
-                // TODO: Send midi notes to be played
+                byte[] notes;
+                if (CurrentMode == PianoMode.SingleNote)
+                {
+                    notes = new byte[] { GetPianoNote(button.Content as string, Octave) };
+                }
+                else
+                {
+                    notes = GetPianoChord(button.Content as string, Octave);
+                }
+
+                PlayNote(notes);
             }
             else if (e.PointerState == PointerState.Exit)
             {
@@ -234,7 +244,7 @@ namespace GazePianoPrototype
 
         private void OctaveDown_Click(object sender, RoutedEventArgs e)
         {
-            this.Octave++;
+            this.Octave--;
         }
 
         private void MinorMode_Click(object sender, RoutedEventArgs e)
@@ -274,10 +284,10 @@ namespace GazePianoPrototype
 
         private void OctaveUp_Click(object sender, RoutedEventArgs e)
         {
-            this.Octave--;
+            this.Octave++;
         }
 
-        private int GetPianoNote(String note, int octave)
+        private byte GetPianoNote(String note, int octave)
         {
             int intNote = -1;
             if (noteToInt.ContainsKey(note))
@@ -288,12 +298,12 @@ namespace GazePianoPrototype
                     intNote += 12;
                 }
             }
-            return intNote;
+            return (byte)intNote;
         }
 
-        private int[] GetPianoChord(String note, int octave)
+        private byte[] GetPianoChord(String note, int octave)
         {
-            int[] intChord = new int[3];
+            byte[] intChord = new byte[3];
             int intNote = -1;
             if (noteToInt.ContainsKey(note))
             {
