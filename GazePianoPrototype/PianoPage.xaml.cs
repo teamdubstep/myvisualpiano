@@ -23,19 +23,12 @@ namespace GazePianoPrototype
     /// </summary>
     public sealed partial class PianoPage : Page
     {
-        enum PageState { Normal, RetNormal }
-        private PageState _currentState;
+        enum PianoMode { Note, MinorChord, MajorChord }
 
-        private PageState currentState
+        private PianoMode currentMode
         {
-            get { return _currentState; }
-            set
-            {
-                if (value != _currentState)
-                {
-                    _currentState = value;
-                }
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -45,18 +38,11 @@ namespace GazePianoPrototype
         {
             InitializeComponent();
             GazeInput.SetIsCursorVisible(this, true);
-            currentState = PageState.Normal;
+            currentMode = PianoMode.Note;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Checks if a note has been queued for playback & plays it
-            if (!string.IsNullOrEmpty(App.PlayNote))
-            {
-                PlayNote(App.PlayNote);
-                App.PlayNote = null;
-            }
-
             base.OnNavigatedTo(e);
         }
 
@@ -77,11 +63,6 @@ namespace GazePianoPrototype
             {
                 return;
             }
-            else if (currentState == PageState.Normal)
-            {
-                App.QueuedNote = UIE.Content as string;
-                SetStateRetNormal();
-            }
         }
 
         /// <summary>
@@ -90,9 +71,7 @@ namespace GazePianoPrototype
         /// <param name="note">String description of note (e.g. A or A.major)</param>
         private void PlayNote(string note)
         {
-            MediaSource pianoNote = MediaSource.CreateFromUri(new Uri($"ms-appx:///Notes/{note}.mp3"));
-            PianoPlayer.SetPlaybackSource(pianoNote);
-            PianoPlayer.Play();
+            //TODO: Implement MIDI Player
         }
 
         /// <summary>
@@ -101,7 +80,6 @@ namespace GazePianoPrototype
         private void SetStateRetNormal()
         {
             BlankButtons();
-            currentState = PageState.RetNormal;
         }
 
         private void BlankButtons()
@@ -116,6 +94,18 @@ namespace GazePianoPrototype
             BL.Content = "";
         }
 
+        private void RelabelButtons()
+        {
+            ML.Content = "A";
+            TL.Content = "B";
+            TM.Content = "C";
+            TR.Content = "D";
+            MR.Content = "E";
+            BR.Content = "F";
+            BM.Content = "G";
+            BL.Content = "PAUSE";
+        }
+
         /// <summary>
         /// Handles recentering
         /// </summary>
@@ -123,22 +113,7 @@ namespace GazePianoPrototype
         /// <param name="e"></param>
         private void Center_Tapped(object sender, RoutedEventArgs e)
         {
-            // Check if a note was selected, if so handle fixing the page & navigation
-            if (currentState == PageState.RetNormal)
-            {
-                Frame.Navigate(typeof(NotePage), null, new SuppressNavigationTransitionInfo());
 
-                ML.Content = "A";
-                TL.Content = "B";
-                TM.Content = "C";
-                TR.Content = "D";
-                MR.Content = "E";
-                BR.Content = "F";
-                BM.Content = "G";
-                BL.Content = "PAUSE";
-
-                currentState = PageState.Normal;
-            }
         }
     }
 }

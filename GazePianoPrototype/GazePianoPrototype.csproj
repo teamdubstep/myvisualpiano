@@ -125,9 +125,6 @@
     <Compile Include="MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NotePage.xaml.cs">
-      <DependentUpon>NotePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PianoPage.xaml.cs">
       <DependentUpon>PianoPage.xaml</DependentUpon>
     </Compile>
@@ -146,31 +143,6 @@
     <Content Include="Assets\play_music.png" />
     <Content Include="Assets\record.png" />
     <Content Include="Assets\view_records.png" />
-    <Content Include="Notes\A.major.mp3" />
-    <Content Include="Notes\A.minor.mp3" />
-    <Content Include="Notes\A.mp3" />
-    <Content Include="Notes\B.major.mp3" />
-    <Content Include="Notes\B.minor.mp3" />
-    <Content Include="Notes\B.mp3" />
-    <Content Include="Notes\Bb.mp3" />
-    <Content Include="Notes\C.major.mp3" />
-    <Content Include="Notes\C.minor.mp3" />
-    <Content Include="Notes\C.mp3" />
-    <Content Include="Notes\D.major.mp3" />
-    <Content Include="Notes\D.minor.mp3" />
-    <Content Include="Notes\D.mp3" />
-    <Content Include="Notes\Dd.mp3" />
-    <Content Include="Notes\E.major.mp3" />
-    <Content Include="Notes\E.minor.mp3" />
-    <Content Include="Notes\E.mp3" />
-    <Content Include="Notes\Eb.mp3" />
-    <Content Include="Notes\F.major.mp3" />
-    <Content Include="Notes\F.minor.mp3" />
-    <Content Include="Notes\F.mp3" />
-    <Content Include="Notes\G.major.mp3" />
-    <Content Include="Notes\G.minor.mp3" />
-    <Content Include="Notes\G.mp3" />
-    <Content Include="Notes\Gb.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -190,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NotePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
