@@ -22,30 +22,7 @@ namespace GazePianoPrototype
     /// </summary>
     sealed partial class App : Application
     {
-        public static string QueuedNote { get; set; }
-
-        public static string PlayNote { get; set; }
-
-        private static int _octave;
-        public static int Octave
-        {
-            get
-            {
-                return _octave;
-            }
-            set
-            {
-                if (value < 0 || value > 7)
-                {
-                    return;
-                }
-                else
-                {
-                    _octave = value;
-                }
-            }
-        }
-
+        public static List<PresetKey> PresetKeys { get; private set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -54,7 +31,9 @@ namespace GazePianoPrototype
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            Octave = 3;
+
+            PresetKeys = new List<PresetKey>();
+            PresetKeys.Add(new PresetKey("Whatever", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", "" }));
         }
 
         /// <summary>

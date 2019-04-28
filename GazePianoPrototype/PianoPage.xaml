@@ -10,77 +10,94 @@
     xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
     gaze:GazeInput.Interaction="Enabled"
     gaze:GazeInput.DwellDuration="00:00:00.00"
-    gaze:GazeInput.FixationDuration="00:00:00.00">
+    gaze:GazeInput.FixationDuration="00:00:00.10">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <MediaElement x:Name="PianoPlayer"></MediaElement>
-        <Button x:Name="ML" Grid.Row="2" Grid.Column="0" Content="A" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="2" Grid.Column="0" Fill="#FF00FF0C" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="TL" Grid.Row="0" Grid.Column="0" Content="B" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FF00FF0C" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="TM" Grid.Row="0" Grid.Column="2" Content="C" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="0" Grid.Column="2" Fill="#FF00FF0C" HorizontalAlignment="Center" VerticalAlignment="Top" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="TR" Grid.Row="0" Grid.Column="4" Content="D" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="0" Grid.Column="4" Fill="#FF00FF0C" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="MR" Grid.Row="2" Grid.Column="4" Content="E" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="2" Grid.Column="4" Fill="#FF00FF0C" HorizontalAlignment="Right" VerticalAlignment="Center" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="BR" Grid.Row="4" Grid.Column="4" Content="F" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="4" Grid.Column="4" Fill="#FF00FF0C" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="BM" Grid.Row="4" Grid.Column="2" Content="G" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="4" Grid.Column="2" Fill="#FF00FF0C" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="20" Height="20"></Rectangle>
-
-        <Button x:Name="BL" Grid.Row="4" Grid.Column="0" Content="PAUSE" Click="Button_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Rectangle Grid.Row="4" Grid.Column="2" Fill="#FF00FF0C" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="20" Height="20"></Rectangle>
-
-        <Grid x:Name="MidGrid" Grid.Row="2" Grid.Column="2" >
+        <!-- Top Buttons -->
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="B" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="OctaveDown_Click"/>
+            <Button Grid.Column="1" Content="Minor" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="MinorMode_Click"/>
+            <Button Grid.Column="2" Content="=" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="Home_Click" />
+            <Button Grid.Column="3" Content="Major" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="MajorClick_Click"/>
+            <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.50" Click="OctaveUp_Click"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="C" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="0" Grid.Column="4" Text="D" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="2" Grid.Column="4" Text="E" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="4" Grid.Column="4" Text="F" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="4" Grid.Column="2"  Text="G" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button x:Name="Center" Grid.ColumnSpan="5" Grid.RowSpan="5" HorizontalAlignment="Stretch" Background="Green" VerticalAlignment="Stretch" Canvas.ZIndex="-1" Click="Center_Tapped">CENTER</Button>
         </Grid>
+        <!-- Center Indicators -->
+        
+        
+        <!-- Left Buttons -->
+        <Button Grid.Column="0" Grid.Row="1" x:Name="L1" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="2" x:Name="L2" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="3" x:Name="L3" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <!-- Bottom Buttons -->
+        <Button Grid.Column="1" Grid.Row="4" x:Name="B1" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="4" x:Name="B2" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="3" Grid.Row="4" x:Name="B3" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <!-- Right Buttons -->
+        <Button Grid.Column="4" Grid.Row="1" x:Name="R3" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="4" Grid.Row="2" x:Name="R2" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        <Button Grid.Column="4" Grid.Row="3" x:Name="R1" Style="{StaticResource NoteButton}">
+            <gaze:GazeInput.GazeElement>
+                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
+            </gaze:GazeInput.GazeElement>
+        </Button>
+        
     </Grid>
 </Page>
