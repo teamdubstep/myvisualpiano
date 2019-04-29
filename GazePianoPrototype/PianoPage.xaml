@@ -48,7 +48,10 @@
 
         </Grid>
         <!-- Center Indicators -->
-        
+        <Grid Grid.Column="2" Grid.Row="2">
+            <Rectangle Style="{StaticResource InfoContainer}"></Rectangle>
+            <TextBlock x:Name="CurrentOctave" Style="{StaticResource InfoText}"/>
+        </Grid>
         
         <!-- Left Buttons -->
         <Button Grid.Column="0" Grid.Row="1" x:Name="L1" Style="{StaticResource NoteButton}">

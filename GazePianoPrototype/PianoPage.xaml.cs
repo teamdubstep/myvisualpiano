@@ -71,7 +71,9 @@ namespace GazePianoPrototype
             GazeInput.SetIsCursorVisible(this, true);
             CurrentMode = PianoMode.SingleNote;
             LoadNotesAndChords();
-            Octave = 3;            
+            Octave = 3;
+            CurrentOctave.Text = "Octave " + Octave;
+
         }
 
         /// <summary>
@@ -176,6 +178,7 @@ namespace GazePianoPrototype
         private void OctaveDown_Click(object sender, RoutedEventArgs e)
         {
             this.Octave--;
+            CurrentOctave.Text = "Octave " + Octave;
         }
 
         private void MinorMode_Click(object sender, RoutedEventArgs e)
@@ -218,6 +221,7 @@ namespace GazePianoPrototype
         private void OctaveUp_Click(object sender, RoutedEventArgs e)
         {
             this.Octave++;
+            CurrentOctave.Text = "Octave " + Octave;
         }
 
         /// <summary>
