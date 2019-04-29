@@ -1,43 +1,34 @@
-﻿using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Devices.Enumeration;
-using Windows.Devices.Midi;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
-
-namespace GazePianoPrototype
+﻿namespace GazePianoPrototype
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
+    using Windows.Devices.Enumeration;
+    using Windows.Devices.Midi;
+    using Windows.UI.Popups;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// The home page for the visual piano instrument
     /// </summary>
     public sealed partial class PianoPage : Page
     {
-        enum PianoMode { SingleNote, MinorChord, MajorChord }
+        /// <summary>
+        /// Modes that the virtual piano keys can operate in
+        /// </summary>
+        private enum PianoMode { SingleNote, MinorChord, MajorChord }
 
-        private PianoMode CurrentMode
-        {
-            get;
-            set;
-        }
+        /// <summary>
+        /// Gets the mode that the piano is currently in
+        /// </summary>
+        private PianoMode CurrentMode { get; set; }
 
-        private static Dictionary<String, int> noteToInt;
-        private static Dictionary<String, String[]> majorChords;
-        private static Dictionary<String, String[]> minorChords;
+        private static Dictionary<string, int> noteToInt;
+        private static Dictionary<string, string[]> majorChords;
+        private static Dictionary<string, string[]> minorChords;
 
         private static int _octave;
 
@@ -85,13 +76,13 @@ namespace GazePianoPrototype
             LoadPreset(0);
 
             // Find Microsoft synth and instantiate midi
-            var deviceInformationCollection = await DeviceInformation.FindAllAsync(MidiOutPort.GetDeviceSelector());
-            var synthObject = deviceInformationCollection.FirstOrDefault(x => x.Name == "Microsoft GS Wavetable Synth");
+            DeviceInformationCollection deviceInformationCollection = await DeviceInformation.FindAllAsync(MidiOutPort.GetDeviceSelector());
+            DeviceInformation synthObject = deviceInformationCollection.FirstOrDefault(x => x.Name == "Microsoft GS Wavetable Synth");
             synth = await MidiOutPort.FromIdAsync(synthObject.Id);
 
             if (synth == null)
             {
-                await new MessageDialog("Could not find Microsoft GS Wavetable Synth.  Failed to open MIDI port.", "Error Starting App").ShowAsync();
+                _ = await new MessageDialog("Could not find Microsoft GS Wavetable Synth.  Failed to open MIDI port.", "Error Starting App").ShowAsync();
             }
 
             base.OnNavigatedTo(e);
@@ -126,7 +117,7 @@ namespace GazePianoPrototype
                 }
 
                 playingNotes = null;
-            }            
+            }
         }
 
         private void LoadPreset(int index)
@@ -175,12 +166,22 @@ namespace GazePianoPrototype
             }
         }
 
+        /// <summary>
+        /// Handles octave down button clicks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OctaveDown_Click(object sender, RoutedEventArgs e)
         {
             this.Octave--;
             CurrentOctave.Text = "Octave " + Octave;
         }
 
+        /// <summary>
+        /// Handles button clicks for the minor mode button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinorMode_Click(object sender, RoutedEventArgs e)
         {
             if (this.CurrentMode != PianoMode.MinorChord)
@@ -198,11 +199,21 @@ namespace GazePianoPrototype
 
         }
 
+        /// <summary>
+        /// Handles button clicks for home button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
         }
 
+        /// <summary>
+        /// Handles button clicks for major mode button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MajorClick_Click(object sender, RoutedEventArgs e)
         {
             if (this.CurrentMode != PianoMode.MajorChord)
@@ -218,6 +229,11 @@ namespace GazePianoPrototype
             }
         }
 
+        /// <summary>
+        /// Handles button clicks for octave up button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OctaveUp_Click(object sender, RoutedEventArgs e)
         {
             this.Octave++;
@@ -229,62 +245,68 @@ namespace GazePianoPrototype
         /// </summary>
         private void LoadNotesAndChords()
         {
-            noteToInt = new Dictionary<string, int>();
-            noteToInt.Add("C", 0);
-            noteToInt.Add("C#", 1);
-            noteToInt.Add("Db", 1);
-            noteToInt.Add("D", 2);
-            noteToInt.Add("D#", 3);
-            noteToInt.Add("Eb", 3);
-            noteToInt.Add("E", 4);
-            noteToInt.Add("F", 5);
-            noteToInt.Add("F#", 6);
-            noteToInt.Add("Gb", 6);
-            noteToInt.Add("G", 7);
-            noteToInt.Add("G#", 8);
-            noteToInt.Add("Ab", 8);
-            noteToInt.Add("A", 9);
-            noteToInt.Add("A#", 10);
-            noteToInt.Add("Bb", 10);
-            noteToInt.Add("B", 11);
+            noteToInt = new Dictionary<string, int>
+            {
+                { "C", 0 },
+                { "C#", 1 },
+                { "Db", 1 },
+                { "D", 2 },
+                { "D#", 3 },
+                { "Eb", 3 },
+                { "E", 4 },
+                { "F", 5 },
+                { "F#", 6 },
+                { "Gb", 6 },
+                { "G", 7 },
+                { "G#", 8 },
+                { "Ab", 8 },
+                { "A", 9 },
+                { "A#", 10 },
+                { "Bb", 10 },
+                { "B", 11 }
+            };
 
-            majorChords = new Dictionary<String, String[]>();
-            majorChords.Add("C", new String[] { "C", "E", "G" });
-            majorChords.Add("C#", new String[] { "C#", "E#", "G#" });
-            majorChords.Add("Db", new String[] { "Db", "F", "Ab" });
-            majorChords.Add("D", new String[] { "D", "F#", "A" });
-            majorChords.Add("Eb", new String[] { "Eb", "G", "Bb" });
-            majorChords.Add("E", new String[] { "E", "G#", "B" });
-            majorChords.Add("Fb", new String[] { "Fb", "Ab", "Cb" });
-            majorChords.Add("F", new String[] { "F", "A", "C" });
-            majorChords.Add("F#", new String[] { "F#", "A#", "C#" });
-            majorChords.Add("Gb", new String[] { "Gb", "Bb", "Db" });
-            majorChords.Add("G", new String[] { "G", "B", "D" });
-            majorChords.Add("G#", new String[] { "G#", "B#", "D#" });
-            majorChords.Add("Ab", new String[] { "Ab", "C", "Eb" });
-            majorChords.Add("A", new String[] { "A", "C#", "E" });
-            majorChords.Add("Bb", new String[] { "Bb", "D", "F" });
-            majorChords.Add("B", new String[] { "B", "D#", "F#" });
-            majorChords.Add("Cb", new String[] { "Cb", "Eb", "Gb" });
+            majorChords = new Dictionary<string, string[]>
+            {
+                { "C", new string[] { "C", "E", "G" } },
+                { "C#", new string[] { "C#", "E#", "G#" } },
+                { "Db", new string[] { "Db", "F", "Ab" } },
+                { "D", new string[] { "D", "F#", "A" } },
+                { "Eb", new string[] { "Eb", "G", "Bb" } },
+                { "E", new string[] { "E", "G#", "B" } },
+                { "Fb", new string[] { "Fb", "Ab", "Cb" } },
+                { "F", new string[] { "F", "A", "C" } },
+                { "F#", new string[] { "F#", "A#", "C#" } },
+                { "Gb", new string[] { "Gb", "Bb", "Db" } },
+                { "G", new string[] { "G", "B", "D" } },
+                { "G#", new string[] { "G#", "B#", "D#" } },
+                { "Ab", new string[] { "Ab", "C", "Eb" } },
+                { "A", new string[] { "A", "C#", "E" } },
+                { "Bb", new string[] { "Bb", "D", "F" } },
+                { "B", new string[] { "B", "D#", "F#" } },
+                { "Cb", new string[] { "Cb", "Eb", "Gb" } }
+            };
 
-            minorChords = new Dictionary<String, String[]>();
-            minorChords.Add("C", new String[] { "C", "Eb", "G" });
-            minorChords.Add("C#", new String[] { "C#", "E", "G#" });
-            minorChords.Add("Db", new String[] { "Db", "Fb", "Ab" });
-            minorChords.Add("D", new String[] { "D", "F", "A" });
-            minorChords.Add("D#", new String[] { "D#", "F#", "A#" });
-            minorChords.Add("Eb", new String[] { "Eb", "Gb", "Bb" });
-            minorChords.Add("E", new String[] { "E", "G", "B" });
-            minorChords.Add("E#", new String[] { "E#", "G#", "B#" });
-            minorChords.Add("F", new String[] { "F", "Ab", "C" });
-            minorChords.Add("F#", new String[] { "F#", "A", "C#" });
-            minorChords.Add("G", new String[] { "G", "Bb", "D" });
-            minorChords.Add("G#", new String[] { "G#", "B", "D#" });
-            minorChords.Add("Ab", new String[] { "Ab", "B", "Eb" });
-            minorChords.Add("A", new String[] { "A", "C", "E" });
-            minorChords.Add("A#", new String[] { "A#", "C#", "E#" });
-            minorChords.Add("Bb", new String[] { "Bb", "Db", "F" });
-            minorChords.Add("B", new String[] { "B", "D", "F#" });
+            minorChords = new Dictionary<string, string[]>
+            {
+                { "C", new string[] { "C", "Eb", "G" } },
+                { "C#", new string[] { "C#", "E", "G#" } },
+                { "Db", new string[] { "Db", "Fb", "Ab" } },
+                { "D", new string[] { "D", "F", "A" } },
+                { "D#", new string[] { "D#", "F#", "A#" } },
+                { "Eb", new string[] { "Eb", "Gb", "Bb" } },
+                { "E", new string[] { "E", "G", "B" } },
+                { "E#", new string[] { "E#", "G#", "B#" } },
+                { "F", new string[] { "F", "Ab", "C" } },
+                { "F#", new string[] { "F#", "A", "C#" } },
+                { "G", new string[] { "G", "Bb", "D" } },
+                { "G#", new string[] { "G#", "B", "D#" } },
+                { "Ab", new string[] { "Ab", "B", "Eb" } },
+                { "A", new string[] { "A", "C", "E" } },
+                { "A#", new string[] { "A#", "C#", "E#" } },
+                { "Bb", new string[] { "Bb", "Db", "F" } },
+                { "B", new string[] { "B", "D", "F#" } }
+            };
         }
 
         /// <summary>
@@ -292,8 +314,8 @@ namespace GazePianoPrototype
         /// </summary>
         /// <param name="note">Desired note (e.g. C or F#)</param>
         /// <param name="octave">Desired Octave</param>
-        /// <returns></returns>
-        private byte GetPianoNote(String note, int octave)
+        /// <returns>byte code for the MIDI note</returns>
+        private byte GetPianoNote(string note, int octave)
         {
             int intNote = -1;
             if (noteToInt.ContainsKey(note))
@@ -313,13 +335,13 @@ namespace GazePianoPrototype
         /// <param name="note"></param>
         /// <param name="octave"></param>
         /// <returns></returns>
-        private byte[] GetPianoChord(String note, int octave)
+        private byte[] GetPianoChord(string note, int octave)
         {
             byte[] intChord = new byte[3];
             int intNote = -1;
             if (noteToInt.ContainsKey(note))
             {
-                String[] stringChord = new String[3];
+                string[] stringChord = new string[3];
                 // Get the chord progression for major / minor modes
                 if (CurrentMode == PianoMode.MajorChord)
                 {

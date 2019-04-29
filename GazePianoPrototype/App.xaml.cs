@@ -1,28 +1,23 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System;
-
-namespace GazePianoPrototype
+﻿namespace GazePianoPrototype
 {
+    using System;
+    using System.Collections.Generic;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
     {
+        /// <summary>
+        /// Preset Keys for the visual piano
+        /// </summary>
         public static List<PresetKey> PresetKeys { get; private set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,8 +27,10 @@ namespace GazePianoPrototype
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            PresetKeys = new List<PresetKey>();
-            PresetKeys.Add(new PresetKey("Whatever", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", "" }));
+            PresetKeys = new List<PresetKey>
+            {
+                new PresetKey("Whatever", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", string.Empty })
+            };
         }
 
         /// <summary>
@@ -82,7 +79,7 @@ namespace GazePianoPrototype
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -96,7 +93,7 @@ namespace GazePianoPrototype
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
