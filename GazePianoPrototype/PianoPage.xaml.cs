@@ -295,7 +295,7 @@ namespace GazePianoPrototype
             if (noteToInt.ContainsKey(note))
             {
                 intNote = noteToInt[note];
-                for (var i = 0; i < octave + 2; i++)
+                for (int i = 0; i < octave + 2; i++)
                 {
                     intNote += 12;
                 }
@@ -327,7 +327,7 @@ namespace GazePianoPrototype
                 }
 
                 // Get all int piano notes for the chord
-                for (var i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     intChord[i] = GetPianoNote(stringChord[i], octave);
                 }
