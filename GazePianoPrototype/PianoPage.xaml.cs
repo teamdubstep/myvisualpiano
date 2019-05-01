@@ -127,15 +127,25 @@
                 throw new ArgumentOutOfRangeException(nameof(index), "Index must be within App.PresetKeys range");
             }
             PresetKey key = App.PresetKeys[index];
-            L1.Content = key.Notes[0];
-            L2.Content = key.Notes[1];
-            L3.Content = key.Notes[2];
-            B1.Content = key.Notes[3];
-            B2.Content = key.Notes[4];
-            B3.Content = key.Notes[5];
-            R1.Content = key.Notes[6];
-            R2.Content = key.Notes[7];
-            R3.Content = key.Notes[8];
+            L1.Content = key.DisplayNotes[0];
+            L2.Content = key.DisplayNotes[1];
+            L3.Content = key.DisplayNotes[2];
+            B1.Content = key.DisplayNotes[3];
+            B2.Content = key.DisplayNotes[4];
+            B3.Content = key.DisplayNotes[5];
+            R1.Content = key.DisplayNotes[6];
+            R2.Content = key.DisplayNotes[7];
+            R3.Content = key.DisplayNotes[8];
+
+            L1.Tag = key.Notes[0];
+            L2.Tag = key.Notes[1];
+            L3.Tag = key.Notes[2];
+            B1.Tag = key.Notes[3];
+            B2.Tag = key.Notes[4];
+            B3.Tag = key.Notes[5];
+            R1.Tag = key.Notes[6];
+            R2.Tag = key.Notes[7];
+            R3.Tag = key.Notes[8];
         }
 
         /// <summary>
@@ -149,13 +159,35 @@
             if (e.PointerState == PointerState.Fixation)
             {
                 byte[] notes;
-                if (CurrentMode == PianoMode.SingleNote)
+                string content = button.Tag as string;
+                int octave = this.Octave;
+
+                /* Check for empty virtual keys */
+                if (string.IsNullOrWhiteSpace(content))
                 {
-                    notes = new byte[] { GetPianoNote(button.Content as string, Octave) };
+                    return;
+                }
+
+                /* Octave Parsing */
+                if (content.Contains("+"))
+                {
+                    octave++;
+                    content = content.Replace("+", string.Empty);
+                }
+                else if (content.Contains("-"))
+                {
+                    octave--;
+                    content = content.Replace("-", string.Empty);
+                }
+
+                /* Play Note */
+                if (this.CurrentMode == PianoMode.SingleNote)
+                {
+                    notes = new byte[] { GetPianoNote(content, octave) };
                 }
                 else
                 {
-                    notes = GetPianoChord(button.Content as string, Octave);
+                    notes = GetPianoChord(content, octave);
                 }
 
                 PlayNote(notes);
@@ -174,7 +206,7 @@
         private void OctaveDown_Click(object sender, RoutedEventArgs e)
         {
             this.Octave--;
-            CurrentOctave.Text = "Octave " + Octave;
+            CurrentOctave.Text = "Octave " + this.Octave;
         }
 
         /// <summary>
