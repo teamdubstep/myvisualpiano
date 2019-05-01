@@ -29,7 +29,37 @@
 
             PresetKeys = new List<PresetKey>
             {
-                new PresetKey("Whatever", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", string.Empty })
+                new PresetKey("C major", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", string.Empty }),
+                new PresetKey("A minor", new string[] { "A", "B", "C", "D", "E", "F", "G", "A", string.Empty }),
+                new PresetKey("G major", new string[] { "G", "A", "B", "C", "D", "E", "F#", "G", string.Empty }),
+                new PresetKey("E minor", new string[] { "E", "F#", "G", "A", "B", "C", "D", "E", string.Empty }),
+                new PresetKey("D major", new string[] { "D", "E", "F#", "G", "A", "B", "C#", "D", string.Empty }),
+                new PresetKey("B minor", new string[] { "B", "C#", "D", "E", "F#", "G", "A", "B", string.Empty }),
+                new PresetKey("A major", new string[] { "A", "B", "C#", "D", "E", "F#", "G#", "A", string.Empty }),
+                new PresetKey("F# minor", new string[] { "F#", "G#", "A", "B", "C#", "D", "E", "F#", string.Empty }),
+                new PresetKey("E major", new string[] { "E", "F#", "G#", "A", "B", "C#", "D#", "E", string.Empty }),
+                new PresetKey("C# minor", new string[] { "C#", "D#", "E", "F#", "G#", "A", "B", "C#", string.Empty }),
+                new PresetKey("B major", new string[] { "B", "C#", "D#", "E", "F#", "G#", "A#", "B", string.Empty }),
+                new PresetKey("G# minor", new string[] { "G#", "A#", "B", "C#", "D#", "E", "F#", "G#", string.Empty }),
+                new PresetKey("F# major", new string[] { "F#", "G#", "A#", "B", "C#", "D#", "E#", "F#", string.Empty }),
+                new PresetKey("D# minor", new string[] { "D#", "E#", "F#", "G#", "A#", "B", "C#", "D#", string.Empty }),
+                new PresetKey("C# major", new string[] { "C#", "D#", "E#", "F#", "G#", "A#", "B#", "C#", string.Empty }),
+                new PresetKey("A# minor", new string[] { "A#", "B#", "C#", "D#", "E#", "F#", "G#", "A#", string.Empty }),
+
+                new PresetKey("F major", new string[] { "F", "G", "A", "Bb", "C", "D", "E", "F", string.Empty }),
+                new PresetKey("D minor", new string[] { "D", "E", "F", "G", "A", "Bb", "C", "D", string.Empty }),
+                new PresetKey("Bb major", new string[] { "Bb", "C", "D", "Eb", "F", "G", "A", "Bb", string.Empty }),
+                new PresetKey("G minor", new string[] { "G", "A", "Bb", "C", "D", "Eb", "F", "G", string.Empty }),
+                new PresetKey("Eb major", new string[] { "Eb", "F", "G", "Ab", "Bb", "C", "D", "Eb", string.Empty }),
+                new PresetKey("C minor", new string[] { "C", "D", "Eb", "F", "G", "Ab", "Bb", "C", string.Empty }),
+                new PresetKey("Ab major", new string[] { "Ab", "Bb", "C", "Db", "Eb", "F", "G", "Ab", string.Empty }),
+                new PresetKey("F minor", new string[] { "F", "G", "Ab", "Bb", "C", "Db", "Eb", "F", string.Empty }),
+                new PresetKey("Db major", new string[] { "Db", "Eb", "F", "Gb", "Ab", "Bb", "C", "D", string.Empty }),
+                new PresetKey("Bb minor", new string[] { "Bb", "C", "Db", "Eb", "F", "Gb", "Ab", "Bb", string.Empty }),
+                new PresetKey("Gb major", new string[] { "Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F", "Gb", string.Empty }),
+                new PresetKey("Eb minor", new string[] { "Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db", "Eb", string.Empty }),
+                new PresetKey("Cb major", new string[] { "Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Bb", "Cb", string.Empty }),
+                new PresetKey("Ab minor", new string[] { "Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb", "Ab", string.Empty }),
             };
         }
 
