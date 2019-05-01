@@ -29,6 +29,7 @@
         private static Dictionary<string, int> noteToInt;
         private static Dictionary<string, string[]> majorChords;
         private static Dictionary<string, string[]> minorChords;
+        private static Dictionary<string, int> notesToMidi;
 
         private static int _octave;
 
@@ -64,7 +65,7 @@
             LoadNotesAndChords();
             Octave = 3;
             CurrentOctave.Text = "Octave " + Octave;
-
+            LoadKeyNoteToMidi(App.PresetKeys[0]);
         }
 
         /// <summary>
@@ -151,11 +152,12 @@
                 byte[] notes;
                 if (CurrentMode == PianoMode.SingleNote)
                 {
-                    notes = new byte[] { GetPianoNote(button.Content as string, Octave) };
+                    //notes = new byte[] { GetPianoNote(button.Content as string, Octave) };
+                    notes = new byte[] { (byte) notesToMidi[button.Content as string] };
                 }
                 else
                 {
-                    notes = GetPianoChord(button.Content as string, Octave);
+                    notes = GetPianoChord(button.Content as string);
                 }
 
                 PlayNote(notes);
@@ -175,6 +177,8 @@
         {
             this.Octave--;
             CurrentOctave.Text = "Octave " + Octave;
+            // Todo: preset keys as a field
+            LoadKeyNoteToMidi(App.PresetKeys[0]);
         }
 
         /// <summary>
@@ -238,6 +242,8 @@
         {
             this.Octave++;
             CurrentOctave.Text = "Octave " + Octave;
+            // Todo: preset keys as a field
+            LoadKeyNoteToMidi(App.PresetKeys[0]);
         }
 
         /// <summary>
@@ -333,12 +339,10 @@
         /// Get a byte array of notes for a chord
         /// </summary>
         /// <param name="note"></param>
-        /// <param name="octave"></param>
         /// <returns></returns>
-        private byte[] GetPianoChord(string note, int octave)
+        private byte[] GetPianoChord(string note)
         {
-            byte[] intChord = new byte[3];
-            int intNote = -1;
+            byte[] byteChord = new byte[3];
             if (noteToInt.ContainsKey(note))
             {
                 string[] stringChord = new string[3];
@@ -346,19 +350,56 @@
                 if (CurrentMode == PianoMode.MajorChord)
                 {
                     stringChord = majorChords[note];
-                }
-                else
+                } else
                 {
                     stringChord = minorChords[note];
                 }
 
-                // Get all int piano notes for the chord
+                // Get all byte piano notes for the chord
                 for (int i = 0; i < 3; i++)
                 {
-                    intChord[i] = GetPianoNote(stringChord[i], octave);
+                    byteChord[i] = (byte) notesToMidi[stringChord[i]];
                 }
             }
-            return intChord;
+            return byteChord;
+        }
+
+        /// <summary>
+        /// Loads up all notes to their midi numbers in the current preset key
+        /// </summary>
+        /// <param name="key">Current PresetKey</param>
+        private void LoadKeyNoteToMidi(PresetKey key)
+        {
+            notesToMidi = new Dictionary<string, int>();
+            int tempOctave = Octave;
+            if (key.Name.Contains("A") || key.Name.Contains("A#") || 
+                key.Name.Contains("Bb") || key.Name.Contains("B"))
+            {
+                tempOctave--; // Octave starts one below if key begins with these conditions
+            }
+            int baseMidiNote = GetPianoNote(key.Notes[0], tempOctave);
+            // Assign different midi numbers depending on major / minor
+            if (key.Name.Contains("major"))
+            {
+                notesToMidi.Add(key.Notes[0], baseMidiNote);
+                notesToMidi.Add(key.Notes[1], baseMidiNote + 2);
+                notesToMidi.Add(key.Notes[2], baseMidiNote + 4);
+                notesToMidi.Add(key.Notes[3], baseMidiNote + 5);
+                notesToMidi.Add(key.Notes[4], baseMidiNote + 7);
+                notesToMidi.Add(key.Notes[5], baseMidiNote + 9);
+                notesToMidi.Add(key.Notes[6], baseMidiNote + 11);
+                notesToMidi.Add(key.Notes[7], baseMidiNote + 12);
+            } else
+            {
+                notesToMidi.Add(key.Notes[0], baseMidiNote);
+                notesToMidi.Add(key.Notes[1], baseMidiNote + 2);
+                notesToMidi.Add(key.Notes[2], baseMidiNote + 3);
+                notesToMidi.Add(key.Notes[3], baseMidiNote + 5);
+                notesToMidi.Add(key.Notes[4], baseMidiNote + 7);
+                notesToMidi.Add(key.Notes[5], baseMidiNote + 8);
+                notesToMidi.Add(key.Notes[6], baseMidiNote + 10);
+                notesToMidi.Add(key.Notes[7], baseMidiNote + 12);
+            }
         }
     }
 }
