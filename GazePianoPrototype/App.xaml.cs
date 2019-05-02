@@ -29,7 +29,7 @@
 
             PresetKeys = new List<PresetKey>
             {
-                new PresetKey("C major", new string[] { "C", "D", "E", "F", "G", "A", "B", "C", string.Empty }),
+                new PresetKey("C major", new string[] { "C", "D", "E", "F", "G", "A", "B", "C+", string.Empty }),
                 new PresetKey("A minor", new string[] { "A-", "B-", "C", "D", "E", "F", "G", "A", string.Empty }),
                 new PresetKey("G major", new string[] { "G", "A", "B", "C+", "D+", "E+", "F#+", "G+", string.Empty }),
                 new PresetKey("E minor", new string[] { "E", "F#", "G", "A", "B", "C+", "D+", "E+", string.Empty }),

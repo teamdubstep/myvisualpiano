@@ -381,31 +381,26 @@
         /// <summary>
         /// Get a byte array of notes for a chord
         /// </summary>
-        /// <param name="note"></param>
-        /// <param name="octave"></param>
+        /// <param name="note">Note that represents the chord name</param>
+        /// <param name="octave">Octave for bottom chord note</param>
         /// <returns></returns>
         private byte[] GetPianoChord(string note, int octave)
         {
             byte[] byteChord = new byte[3];
-            if (noteToInt.ContainsKey(note))
+            byte baseNote = GetPianoNote(note, octave);
+            byteChord[0] = baseNote;
+            // major -> baseNote + 4 + 3
+            if (CurrentMode == PianoMode.MajorChord)
             {
-                string[] stringChord = new string[3];
-                // Get the chord progression for major / minor modes
-                if (CurrentMode == PianoMode.MajorChord)
-                {
-                    stringChord = majorChords[note];
-                }
-                else
-                {
-                    stringChord = minorChords[note];
-                }
-
-                // Get all int piano notes for the chord
-                for (int i = 0; i < 3; i++)
-                {
-                    byteChord[i] = GetPianoNote(stringChord[i], octave);
-                }
+                byteChord[1] = (byte) (baseNote + 4);
             }
+            // minor -> baseNote + 3 + 4
+            else
+            {
+                byteChord[1] = (byte) (baseNote + 3);
+            }
+
+            byteChord[2] = (byte) (baseNote + 7);
             return byteChord;
         }
     }
