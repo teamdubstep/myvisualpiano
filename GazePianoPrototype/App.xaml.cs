@@ -44,7 +44,7 @@
                 new PresetKey("F# major", new string[] { "F#", "G#", "A#", "B", "C#+", "D#+", "E#+", "F#+", string.Empty }),
                 new PresetKey("D# minor", new string[] { "D#", "E#", "F#", "G#", "A#", "B", "C#+", "D#+", string.Empty }),
                 new PresetKey("C# major", new string[] { "C#", "D#", "E#", "F#", "G#", "A#", "B#", "C#+", string.Empty }),
-                new PresetKey("A# minor", new string[] { "A#-", "C", "C#", "D#", "F", "F#", "G#", "A#", string.Empty }),
+                new PresetKey("A# minor", new string[] { "A#-", "B#", "C#", "D#", "E#", "F#", "G#", "A#", string.Empty }),
 
                 new PresetKey("F major", new string[] { "F", "G", "A", "Bb", "C+", "D+", "E+", "F", string.Empty }),
                 new PresetKey("D minor", new string[] { "D", "E", "F", "G", "A", "Bb", "C+", "D+", string.Empty }),
@@ -56,10 +56,10 @@
                 new PresetKey("F minor", new string[] { "F", "G", "Ab", "Bb", "C+", "Db+", "Eb+", "F+", string.Empty }),
                 new PresetKey("Db major", new string[] { "Db", "Eb", "F", "Gb", "Ab", "Bb", "C+", "Db+", string.Empty }),
                 new PresetKey("Bb minor", new string[] { "Bb-", "C", "Db", "Eb", "F", "Gb", "Ab", "Bb", string.Empty }),
-                new PresetKey("Gb major", new string[] { "Gb", "Ab", "Bb", "B", "Db+", "Eb+", "F+", "Gb+", string.Empty }),
-                new PresetKey("Eb minor", new string[] { "Eb", "F", "Gb", "Ab", "Bb", "B", "Db+", "Eb+", string.Empty }),
-                new PresetKey("Cb major", new string[] { "B-", "Db", "Eb", "E", "Gb", "Ab", "Bb", "B", string.Empty }),
-                new PresetKey("Ab minor", new string[] { "Ab", "Bb", "B", "Db+", "Eb+", "E+", "Gb+", "Ab+", string.Empty }),
+                new PresetKey("Gb major", new string[] { "Gb", "Ab", "Bb", "Cb", "Db+", "Eb+", "F+", "Gb+", string.Empty }),
+                new PresetKey("Eb minor", new string[] { "Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db+", "Eb+", string.Empty }),
+                new PresetKey("Cb major", new string[] { "Cb-", "Db", "Eb", "Fb", "Gb", "Ab", "Bb", "Cb", string.Empty }),
+                new PresetKey("Ab minor", new string[] { "Ab", "Bb", "Cb", "Db+", "Eb+", "Fb+", "Gb+", "Ab+", string.Empty }),
             };
         }
 

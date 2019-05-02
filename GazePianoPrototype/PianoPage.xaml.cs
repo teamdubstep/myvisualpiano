@@ -29,6 +29,7 @@
         private static Dictionary<string, int> noteToInt;
         private static Dictionary<string, string[]> majorChords;
         private static Dictionary<string, string[]> minorChords;
+        private static Dictionary<string, string> enharmonics;
 
         private static int _octave;
 
@@ -339,6 +340,14 @@
                 { "Bb", new string[] { "Bb", "Db", "F" } },
                 { "B", new string[] { "B", "D", "F#" } }
             };
+
+            enharmonics = new Dictionary<string, string>
+            {
+                { "Cb", "B" },
+                { "Fb", "E" },
+                { "E#", "F" },
+                { "B#", "C" }
+            };
         }
 
         /// <summary>
@@ -350,6 +359,14 @@
         private byte GetPianoNote(string note, int octave)
         {
             int intNote = -1;
+            /* 
+            *  Get equivalent enharmonic of passed in note 
+            *  if note is an enharmonic
+            */
+            if (enharmonics.ContainsKey(note))
+            {
+                note = enharmonics[note];
+            }
             if (noteToInt.ContainsKey(note))
             {
                 intNote = noteToInt[note];
@@ -369,8 +386,7 @@
         /// <returns></returns>
         private byte[] GetPianoChord(string note, int octave)
         {
-            byte[] intChord = new byte[3];
-            int intNote = -1;
+            byte[] byteChord = new byte[3];
             if (noteToInt.ContainsKey(note))
             {
                 string[] stringChord = new string[3];
@@ -387,10 +403,10 @@
                 // Get all int piano notes for the chord
                 for (int i = 0; i < 3; i++)
                 {
-                    intChord[i] = GetPianoNote(stringChord[i], octave);
+                    byteChord[i] = GetPianoNote(stringChord[i], octave);
                 }
             }
-            return intChord;
+            return byteChord;
         }
     }
 }
