@@ -156,6 +156,12 @@
         /// <param name="e"></param>
         private void NoteButton_StateChanged(object sender, StateChangedEventArgs e)
         {
+            /* Make sure we have a synth before playing anything */
+            if (this.synth is null)
+            {
+                return;
+            }
+
             Button button = sender as Button;
             if (e.PointerState == PointerState.Fixation)
             {
