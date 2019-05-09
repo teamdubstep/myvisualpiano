@@ -5,6 +5,19 @@
     xmlns:local="using:GazePianoPrototype">
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="Button" x:Key="KeySelectionButton">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="MajorMinorButton">
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+
             <Style TargetType="Button" x:Key="NoteButton">
                 <Setter Property="BorderBrush" Value="White"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>

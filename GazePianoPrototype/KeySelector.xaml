@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="GazePianoPrototype.KeySelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GazePianoPrototype"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
+    gaze:GazeInput.Interaction="Enabled"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="Select A Key" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center"/>
+        
+        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="A" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="A#" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Ab" Click="Button_Click"/>
+
+        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="B" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="Bb" Click="Button_Click"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="C" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="C#" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Cb" Click="Button_Click"/>
+
+        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="D" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="D#" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Db" Click="Button_Click"/>
+
+        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="E" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="Eb" Click="Button_Click"/>
+
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="F" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="F#" Click="Button_Click"/>
+
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="G" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="G#" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource KeySelectionButton}" Content="Gb" Click="Button_Click"/>
+    </Grid>
+</Page>

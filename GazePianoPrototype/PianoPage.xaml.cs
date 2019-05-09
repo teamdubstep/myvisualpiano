@@ -61,10 +61,10 @@
         {
             InitializeComponent();
             GazeInput.SetIsCursorVisible(this, true);
-            CurrentMode = PianoMode.SingleNote;
+            this.CurrentMode = PianoMode.SingleNote;
             LoadNotesAndChords();
-            Octave = 3;
-            CurrentOctave.Text = "Octave " + Octave;
+            this.Octave = 3;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
 
         }
 
@@ -75,13 +75,17 @@
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             LoadPreset(0);
+            if (e.Parameter is int)
+            {
+                LoadPreset((int)e.Parameter);
+            }
 
             // Find Microsoft synth and instantiate midi
             DeviceInformationCollection deviceInformationCollection = await DeviceInformation.FindAllAsync(MidiOutPort.GetDeviceSelector());
             DeviceInformation synthObject = deviceInformationCollection.FirstOrDefault(x => x.Name == "Microsoft GS Wavetable Synth");
-            synth = await MidiOutPort.FromIdAsync(synthObject.Id);
+            this.synth = await MidiOutPort.FromIdAsync(synthObject.Id);
 
-            if (synth == null)
+            if (this.synth == null)
             {
                 _ = await new MessageDialog("Could not find Microsoft GS Wavetable Synth.  Failed to open MIDI port.", "Error Starting App").ShowAsync();
             }
@@ -100,9 +104,9 @@
         {
             foreach (byte note in notes)
             {
-                synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
+                this.synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
             }
-            playingNotes = notes;
+            this.playingNotes = notes;
         }
 
         /// <summary>
@@ -110,14 +114,14 @@
         /// </summary>
         private void StopNotes()
         {
-            if (playingNotes != null)
+            if (this.playingNotes != null)
             {
-                foreach (byte note in playingNotes)
+                foreach (byte note in this.playingNotes)
                 {
-                    synth.SendMessage(new MidiNoteOffMessage(0, note, VELOCITY));
+                    this.synth.SendMessage(new MidiNoteOffMessage(0, note, VELOCITY));
                 }
 
-                playingNotes = null;
+                this.playingNotes = null;
             }
         }
 
@@ -213,7 +217,7 @@
         private void OctaveDown_Click(object sender, RoutedEventArgs e)
         {
             this.Octave--;
-            CurrentOctave.Text = "Octave " + this.Octave;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
         }
 
         /// <summary>
@@ -227,7 +231,7 @@
             {
                 this.CurrentMode = PianoMode.MinorChord;
                 (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
-                MajorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
+                this.MajorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
 
             }
             else
@@ -245,7 +249,7 @@
         /// <param name="e"></param>
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack();
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         /// <summary>
@@ -259,7 +263,7 @@
             {
                 this.CurrentMode = PianoMode.MajorChord;
                 (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
-                MinorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
+                this.MinorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
             }
             else
             {
@@ -276,7 +280,7 @@
         private void OctaveUp_Click(object sender, RoutedEventArgs e)
         {
             this.Octave++;
-            CurrentOctave.Text = "Octave " + Octave;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
         }
 
         /// <summary>
@@ -396,7 +400,7 @@
             byte baseNote = GetPianoNote(note, octave);
             byteChord[0] = baseNote;
             // major -> baseNote + 4 + 3
-            if (CurrentMode == PianoMode.MajorChord)
+            if (this.CurrentMode == PianoMode.MajorChord)
             {
                 byteChord[1] = (byte) (baseNote + 4);
             }

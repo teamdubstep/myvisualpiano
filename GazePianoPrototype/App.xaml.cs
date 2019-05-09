@@ -43,7 +43,7 @@
                 new PresetKey("G# minor", new string[] { "G#", "A#", "B", "C#+", "D#+", "E+", "F#+", "G#+", string.Empty }),
                 new PresetKey("F# major", new string[] { "F#", "G#", "A#", "B", "C#+", "D#+", "E#+", "F#+", string.Empty }),
                 new PresetKey("D# minor", new string[] { "D#", "E#", "F#", "G#", "A#", "B", "C#+", "D#+", string.Empty }),
-                new PresetKey("C# major", new string[] { "C#", "D#", "E#", "F#", "G#", "A#", "B#", "C#+", string.Empty }),
+                new PresetKey("C# major", new string[] { "C#", "D#", "E#", "F#", "G#", "A#", "B#+", "C#+", string.Empty }),
                 new PresetKey("A# minor", new string[] { "A#-", "B#", "C#", "D#", "E#", "F#", "G#", "A#", string.Empty }),
 
                 new PresetKey("F major", new string[] { "F", "G", "A", "Bb", "C+", "D+", "E+", "F", string.Empty }),
