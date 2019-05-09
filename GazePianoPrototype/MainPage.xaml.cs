@@ -23,7 +23,7 @@
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(PianoPage));
+            this.Frame.Navigate(typeof(KeySelector));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

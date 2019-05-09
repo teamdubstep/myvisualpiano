@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="GazePianoPrototype.MajorMinorSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GazePianoPrototype"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
+    gaze:GazeInput.Interaction="Enabled"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Style="{ThemeResource HeaderTextBlockStyle}" Text="Select A Key" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Back" Style="{StaticResource MajorMinorButton}" Click="Back_Click"/>
+            <Button x:Name="MinorButton" Content="Minor" Style="{StaticResource MajorMinorButton}" Click="Minor_Clicked"/>
+            <Button x:Name="MajorButton" Content="Major" Style="{StaticResource MajorMinorButton}" Click="Major_Clicked"/>
+        </StackPanel>
+    </Grid>
+</Page>
