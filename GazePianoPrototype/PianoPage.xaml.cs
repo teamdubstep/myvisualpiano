@@ -1,208 +1,417 @@
-﻿using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
-namespace GazePianoPrototype
+﻿namespace GazePianoPrototype
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
+    using Windows.Devices.Enumeration;
+    using Windows.Devices.Midi;
+    using Windows.UI.Popups;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The home page for the visual piano instrument
     /// </summary>
     public sealed partial class PianoPage : Page
     {
-        enum PageState { Normal, ChordConfirm, RetNormal }
+        /// <summary>
+        /// Modes that the virtual piano keys can operate in
+        /// </summary>
+        private enum PianoMode { SingleNote, MinorChord, MajorChord }
 
-        private readonly Brush BlueBrush = new SolidColorBrush(Windows.UI.Colors.Blue);
-        private readonly Brush RedBrush = new SolidColorBrush(Windows.UI.Colors.Red);
-        private Brush DefaultBrush;
+        /// <summary>
+        /// Gets the mode that the piano is currently in
+        /// </summary>
+        private PianoMode CurrentMode { get; set; }
 
-        private PageState _currentState;
+        private static Dictionary<string, int> noteToInt;
+        private static Dictionary<string, string[]> majorChords;
+        private static Dictionary<string, string[]> minorChords;
+        private static Dictionary<string, string> enharmonics;
 
-        private PageState currentState
+        private static int _octave;
+
+        private int Octave
         {
-            get { return _currentState; }
+            get
+            {
+                return _octave;
+            }
             set
             {
-                if (value != _currentState)
+                if (value < 0 || value > 7)
                 {
-                    _currentState = value;
+                    return;
+                }
+                else
+                {
+                    _octave = value;
                 }
             }
         }
 
+        private IMidiOutPort synth;
+
+        /// <summary>
+        /// Creates a new PianoPage (home page for playing music)
+        /// </summary>
         public PianoPage()
         {
             InitializeComponent();
             GazeInput.SetIsCursorVisible(this, true);
-            currentState = PageState.Normal;
-            DefaultBrush = TL.Background;
+            this.CurrentMode = PianoMode.SingleNote;
+            LoadNotesAndChords();
+            this.Octave = 3;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
+
         }
 
-        private string queuedNote = string.Empty;
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles midi creation on navigated to
+        /// </summary>
+        /// <param name="e"></param>
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            var UIE = sender as Button;
-            if (UIE.Content as string == "PAUSE")
+            LoadPreset(0);
+            if (e.Parameter is int)
             {
-                // TODO: Navigate to pause menu
+                LoadPreset((int)e.Parameter);
+            }
+
+            // Find Microsoft synth and instantiate midi
+            DeviceInformationCollection deviceInformationCollection = await DeviceInformation.FindAllAsync(MidiOutPort.GetDeviceSelector());
+            DeviceInformation synthObject = deviceInformationCollection.FirstOrDefault(x => x.Name == "Microsoft GS Wavetable Synth");
+            this.synth = await MidiOutPort.FromIdAsync(synthObject.Id);
+
+            if (this.synth == null)
+            {
+                _ = await new MessageDialog("Could not find Microsoft GS Wavetable Synth.  Failed to open MIDI port.", "Error Starting App").ShowAsync();
+            }
+
+            base.OnNavigatedTo(e);
+        }
+
+        private static readonly byte VELOCITY = 100;
+        private byte[] playingNotes;
+
+        /// <summary>
+        /// Plays the specified midi notes w/ preset velocity
+        /// </summary>
+        /// <param name="notes">Array of note values</param>
+        private void PlayNote(byte[] notes)
+        {
+            foreach (byte note in notes)
+            {
+                this.synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
+            }
+            this.playingNotes = notes;
+        }
+
+        /// <summary>
+        /// Stops all currently playing notes
+        /// </summary>
+        private void StopNotes()
+        {
+            if (this.playingNotes != null)
+            {
+                foreach (byte note in this.playingNotes)
+                {
+                    this.synth.SendMessage(new MidiNoteOffMessage(0, note, VELOCITY));
+                }
+
+                this.playingNotes = null;
+            }
+        }
+
+        private void LoadPreset(int index)
+        {
+            if (index < 0 || index >= App.PresetKeys.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index must be within App.PresetKeys range");
+            }
+            PresetKey key = App.PresetKeys[index];
+            this.L1.Content = key.DisplayNotes[0];
+            this.L2.Content = key.DisplayNotes[1];
+            this.L3.Content = key.DisplayNotes[2];
+            this.B1.Content = key.DisplayNotes[3];
+            this.B2.Content = key.DisplayNotes[4];
+            this.B3.Content = key.DisplayNotes[5];
+            this.R1.Content = key.DisplayNotes[6];
+            this.R2.Content = key.DisplayNotes[7];
+            this.R3.Content = key.DisplayNotes[8];
+
+            this.L1.Tag = key.Notes[0];
+            this.L2.Tag = key.Notes[1];
+            this.L3.Tag = key.Notes[2];
+            this.B1.Tag = key.Notes[3];
+            this.B2.Tag = key.Notes[4];
+            this.B3.Tag = key.Notes[5];
+            this.R1.Tag = key.Notes[6];
+            this.R2.Tag = key.Notes[7];
+            this.R3.Tag = key.Notes[8];
+        }
+
+        /// <summary>
+        /// Handles button events for the notes
+        /// </summary>
+        /// <param name="sender">XAML object that sent the event</param>
+        /// <param name="e"></param>
+        private void NoteButton_StateChanged(object sender, StateChangedEventArgs e)
+        {
+            /* Make sure we have a synth before playing anything */
+            if (this.synth is null)
+            {
                 return;
             }
-            if (currentState == PageState.Normal)
+
+            Button button = sender as Button;
+            if (e.PointerState == PointerState.Fixation)
             {
-                queuedNote = UIE.Content as string;
-                switch (UIE.Name)
+                byte[] notes;
+                string content = button.Tag as string;
+                int octave = this.Octave;
+
+                /* Check for empty virtual keys */
+                if (string.IsNullOrWhiteSpace(content))
                 {
-                    case "ML":
-                        BlankButtons();
-                        TL.Content = "Chord";
-                        TL.Background = BlueBrush;
-                        BL.Content = "Cancel";
-                        BL.Background = RedBrush;
-                        break;
-                    case "TL":
-                        BlankButtons();
-                        ML.Content = "Chord";
-                        ML.Background = BlueBrush;
-                        TM.Content = "Cancel";
-                        TM.Background = RedBrush;
-                        break;
-                    case "TM":
-                        BlankButtons();
-                        TL.Content = "Chord";
-                        TL.Background = BlueBrush;
-                        TR.Content = "Cancel";
-                        TR.Background = RedBrush;
-                        break;
-                    case "TR":
-                        BlankButtons();
-                        TM.Content = "Chord";
-                        TM.Background = BlueBrush;
-                        MR.Content = "Cancel";
-                        MR.Background = RedBrush;
-                        break;
-                    case "MR":
-                        BlankButtons();
-                        TR.Content = "Chord";
-                        TR.Background = BlueBrush;
-                        BR.Content = "Cancel";
-                        BR.Background = RedBrush;
-                        break;
-                    case "BR":
-                        BlankButtons();
-                        MR.Content = "Chord";
-                        MR.Background = BlueBrush;
-                        BM.Content = "Cancel";
-                        BM.Background = RedBrush;
-                        break;
-                    case "BM":
-                        BlankButtons();
-                        BL.Content = "Chord";
-                        BL.Background = BlueBrush;
-                        BR.Content = "Cancel";
-                        BR.Background = RedBrush;
-                        break;
+                    return;
                 }
 
-                currentState = PageState.ChordConfirm;
-            }
-            else if (currentState == PageState.ChordConfirm)
-            {
-                if (UIE.Content as string == "Chord")
+                /* Octave Parsing */
+                if (content.Contains("+"))
                 {
-                    PlayNote(queuedNote + ".chord");
-                    SetStateRetNormal();
+                    octave++;
+                    content = content.Replace("+", string.Empty);
                 }
-                else if (UIE.Content as string == "Cancel")
+                else if (content.Contains("-"))
                 {
-                    queuedNote = String.Empty;
-                    SetStateRetNormal();
+                    octave--;
+                    content = content.Replace("-", string.Empty);
+                }
+
+                /* Play Note */
+                if (this.CurrentMode == PianoMode.SingleNote)
+                {
+                    notes = new byte[] { GetPianoNote(content, octave) };
+                }
+                else
+                {
+                    notes = GetPianoChord(content, octave);
+                }
+
+                PlayNote(notes);
+            }
+            else if (e.PointerState == PointerState.Exit)
+            {
+                StopNotes();
+            }
+        }
+
+        /// <summary>
+        /// Handles octave down button clicks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OctaveDown_Click(object sender, RoutedEventArgs e)
+        {
+            this.Octave--;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
+        }
+
+        /// <summary>
+        /// Handles button clicks for the minor mode button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MinorMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.CurrentMode != PianoMode.MinorChord)
+            {
+                this.CurrentMode = PianoMode.MinorChord;
+                (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
+                this.MajorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
+
+            }
+            else
+            {
+                this.CurrentMode = PianoMode.SingleNote;
+                (sender as Button).Style = (Style)Application.Current.Resources["ModeButton"];
+            }
+
+        }
+
+        /// <summary>
+        /// Handles button clicks for home button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        /// <summary>
+        /// Handles button clicks for major mode button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MajorClick_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.CurrentMode != PianoMode.MajorChord)
+            {
+                this.CurrentMode = PianoMode.MajorChord;
+                (sender as Button).Style = (Style)Application.Current.Resources["SelectedModeButton"];
+                this.MinorModeButton.Style = (Style)Application.Current.Resources["ModeButton"];
+            }
+            else
+            {
+                this.CurrentMode = PianoMode.SingleNote;
+                (sender as Button).Style = (Style)Application.Current.Resources["ModeButton"];
+            }
+        }
+
+        /// <summary>
+        /// Handles button clicks for octave up button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OctaveUp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Octave++;
+            this.CurrentOctave.Text = "Octave " + this.Octave;
+        }
+
+        /// <summary>
+        /// Loads the MIDI mappings for notes and chords
+        /// </summary>
+        private void LoadNotesAndChords()
+        {
+            noteToInt = new Dictionary<string, int>
+            {
+                { "C", 0 },
+                { "C#", 1 },
+                { "Db", 1 },
+                { "D", 2 },
+                { "D#", 3 },
+                { "Eb", 3 },
+                { "E", 4 },
+                { "F", 5 },
+                { "F#", 6 },
+                { "Gb", 6 },
+                { "G", 7 },
+                { "G#", 8 },
+                { "Ab", 8 },
+                { "A", 9 },
+                { "A#", 10 },
+                { "Bb", 10 },
+                { "B", 11 }
+            };
+
+            majorChords = new Dictionary<string, string[]>
+            {
+                { "C", new string[] { "C", "E", "G" } },
+                { "C#", new string[] { "C#", "E#", "G#" } },
+                { "Db", new string[] { "Db", "F", "Ab" } },
+                { "D", new string[] { "D", "F#", "A" } },
+                { "Eb", new string[] { "Eb", "G", "Bb" } },
+                { "E", new string[] { "E", "G#", "B" } },
+                { "Fb", new string[] { "Fb", "Ab", "Cb" } },
+                { "F", new string[] { "F", "A", "C" } },
+                { "F#", new string[] { "F#", "A#", "C#" } },
+                { "Gb", new string[] { "Gb", "Bb", "Db" } },
+                { "G", new string[] { "G", "B", "D" } },
+                { "G#", new string[] { "G#", "B#", "D#" } },
+                { "Ab", new string[] { "Ab", "C", "Eb" } },
+                { "A", new string[] { "A", "C#", "E" } },
+                { "Bb", new string[] { "Bb", "D", "F" } },
+                { "B", new string[] { "B", "D#", "F#" } },
+                { "Cb", new string[] { "Cb", "Eb", "Gb" } }
+            };
+
+            minorChords = new Dictionary<string, string[]>
+            {
+                { "C", new string[] { "C", "Eb", "G" } },
+                { "C#", new string[] { "C#", "E", "G#" } },
+                { "Db", new string[] { "Db", "Fb", "Ab" } },
+                { "D", new string[] { "D", "F", "A" } },
+                { "D#", new string[] { "D#", "F#", "A#" } },
+                { "Eb", new string[] { "Eb", "Gb", "Bb" } },
+                { "E", new string[] { "E", "G", "B" } },
+                { "E#", new string[] { "E#", "G#", "B#" } },
+                { "F", new string[] { "F", "Ab", "C" } },
+                { "F#", new string[] { "F#", "A", "C#" } },
+                { "G", new string[] { "G", "Bb", "D" } },
+                { "G#", new string[] { "G#", "B", "D#" } },
+                { "Ab", new string[] { "Ab", "B", "Eb" } },
+                { "A", new string[] { "A", "C", "E" } },
+                { "A#", new string[] { "A#", "C#", "E#" } },
+                { "Bb", new string[] { "Bb", "Db", "F" } },
+                { "B", new string[] { "B", "D", "F#" } }
+            };
+
+            enharmonics = new Dictionary<string, string>
+            {
+                { "Cb", "B" },
+                { "Fb", "E" },
+                { "E#", "F" },
+                { "B#", "C" }
+            };
+        }
+
+        /// <summary>
+        /// Get the MIDI byte mapping for a chord
+        /// </summary>
+        /// <param name="note">Desired note (e.g. C or F#)</param>
+        /// <param name="octave">Desired Octave</param>
+        /// <returns>byte code for the MIDI note</returns>
+        private byte GetPianoNote(string note, int octave)
+        {
+            int intNote = -1;
+            /* 
+            *  Get equivalent enharmonic of passed in note 
+            *  if note is an enharmonic
+            */
+            if (enharmonics.ContainsKey(note))
+            {
+                note = enharmonics[note];
+            }
+            if (noteToInt.ContainsKey(note))
+            {
+                intNote = noteToInt[note];
+                for (int i = 0; i < octave + 2; i++)
+                {
+                    intNote += 12;
                 }
             }
+            return (byte)intNote;
         }
 
-        private void PlayNote(string note)
+        /// <summary>
+        /// Get a byte array of notes for a chord
+        /// </summary>
+        /// <param name="note">Note that represents the chord name</param>
+        /// <param name="octave">Octave for bottom chord note</param>
+        /// <returns></returns>
+        private byte[] GetPianoChord(string note, int octave)
         {
-            MediaSource pianoNote = MediaSource.CreateFromUri(new Uri($"ms-appx:///Notes/{note}.mp3"));
-            PianoPlayer.SetPlaybackSource(pianoNote);
-            PianoPlayer.Play();
-
-        }
-
-        private void SetStateRetNormal()
-        {
-            //GazeInput.SetDwellDuration(this, new TimeSpan(0, 0, 0, 0, 200));
-            //GazeInput.SetDwellDuration(MidGrid, TimeSpan.Zero);
-            BlankButtons();
-
-            currentState = PageState.RetNormal;
-        }
-
-        private void BlankButtons()
-        {
-            ML.Content = "";
-            TL.Content = "";
-            TM.Content = "";
-            TR.Content = "";
-            MR.Content = "";
-            BR.Content = "";
-            BM.Content = "";
-            BL.Content = "";
-
-            ML.Background = DefaultBrush;
-            TL.Background = DefaultBrush;
-            TM.Background = DefaultBrush;
-            TR.Background = DefaultBrush;
-            MR.Background = DefaultBrush;
-            BR.Background = DefaultBrush;
-            BM.Background = DefaultBrush;
-            BL.Background = DefaultBrush;
-        }
-
-        private void Center_Tapped(object sender, RoutedEventArgs e)
-        {
-            if (currentState == PageState.ChordConfirm)
+            byte[] byteChord = new byte[3];
+            byte baseNote = GetPianoNote(note, octave);
+            byteChord[0] = baseNote;
+            // major -> baseNote + 4 + 3
+            if (this.CurrentMode == PianoMode.MajorChord)
             {
-                PlayNote(queuedNote);
-                queuedNote = String.Empty;
-                SetStateRetNormal();
+                byteChord[1] = (byte) (baseNote + 4);
             }
-            if (currentState == PageState.RetNormal)
+            // minor -> baseNote + 3 + 4
+            else
             {
-                ML.Content = "A";
-                TL.Content = "B";
-                TM.Content = "C";
-                TR.Content = "D";
-                MR.Content = "E";
-                BR.Content = "F";
-                BM.Content = "G";
-                BL.Content = "PAUSE";
-
-                ML.Background = DefaultBrush;
-                TL.Background = DefaultBrush;
-                TM.Background = DefaultBrush;
-                TR.Background = DefaultBrush;
-                MR.Background = DefaultBrush;
-                BR.Background = DefaultBrush;
-                BM.Background = DefaultBrush;
-                BL.Background = DefaultBrush;
-
-                currentState = PageState.Normal;
+                byteChord[1] = (byte) (baseNote + 3);
             }
+
+            byteChord[2] = (byte) (baseNote + 7);
+            return byteChord;
         }
     }
 }

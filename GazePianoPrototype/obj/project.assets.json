@@ -8293,24 +8293,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Parker\\.nuget\\packages\\": {},
+    "C:\\Users\\Wesley Wei\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Repos\\teamdubstep\\capstone-prototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
+      "projectUniqueName": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\capstone-prototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
       "projectName": "GazePianoPrototype",
-      "projectPath": "C:\\Repos\\teamdubstep\\capstone-prototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
-      "packagesPath": "C:\\Users\\Parker\\.nuget\\packages\\",
-      "outputPath": "C:\\Repos\\teamdubstep\\capstone-prototype\\GazePianoPrototype\\obj\\",
+      "projectPath": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\capstone-prototype\\GazePianoPrototype\\GazePianoPrototype.csproj",
+      "packagesPath": "C:\\Users\\Wesley Wei\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wesley Wei\\Documents\\InfoCapstone\\capstone-prototype\\GazePianoPrototype\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Parker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Wesley Wei\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
