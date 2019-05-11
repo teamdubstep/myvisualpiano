@@ -140,7 +140,7 @@
             B3.Content = key.DisplayNotes[5];
             R1.Content = key.DisplayNotes[6];
             R2.Content = key.DisplayNotes[7];
-            R3.Content = key.DisplayNotes[8];
+            //R3.Content = key.DisplayNotes[8];
 
             L1.Tag = key.Notes[0];
             L2.Tag = key.Notes[1];
@@ -150,7 +150,7 @@
             B3.Tag = key.Notes[5];
             R1.Tag = key.Notes[6];
             R2.Tag = key.Notes[7];
-            R3.Tag = key.Notes[8];
+            //R3.Tag = key.Notes[8];
         }
 
         /// <summary>
@@ -281,6 +281,16 @@
         {
             this.Octave++;
             this.CurrentOctave.Text = "Octave " + this.Octave;
+        }
+
+        /// <summary>
+        /// Handles button click to navigate to the menu page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MenuPage));
         }
 
         /// <summary>

@@ -42,7 +42,9 @@
 
             <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveDown_Click"/>
             <Button Grid.Column="1" Content="Minor" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MinorMode_Click" x:Name="MinorModeButton"/>
-            <Button Grid.Column="2" Content="=" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="Home_Click" />
+            <Button Grid.Column="2" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="Home_Click">
+                <Image Source="Assets/home.png"></Image>
+            </Button>
             <Button Grid.Column="3" Content="Major" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MajorClick_Click" x:Name="MajorModeButton"/>
             <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveUp_Click"/>
 
@@ -86,10 +88,8 @@
             </gaze:GazeInput.GazeElement>
         </Button>
         <!-- Right Buttons -->
-        <Button Grid.Column="4" Grid.Row="1" x:Name="R3" Style="{StaticResource NoteButton}">
-            <gaze:GazeInput.GazeElement>
-                <gaze:GazeElement StateChanged="NoteButton_StateChanged"/>
-            </gaze:GazeInput.GazeElement>
+        <Button Grid.Column="4" Grid.Row="1" x:Name="R3" Style="{StaticResource NoteButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="Menu_Click">
+            <Image Source="Assets/menu_icon.png"></Image>
         </Button>
         <Button Grid.Column="4" Grid.Row="2" x:Name="R2" Style="{StaticResource NoteButton}">
             <gaze:GazeInput.GazeElement>

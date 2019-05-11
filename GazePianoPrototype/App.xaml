@@ -36,7 +36,7 @@
             <Style TargetType="Button" x:Key="SelectedModeButton" BasedOn="{StaticResource ModeButton}">
                 <Setter Property="Background" Value="#7F0093F0"/>
             </Style>
-
+            
             <Style TargetType="Rectangle" x:Key="InfoContainer">
                 <Setter Property="Fill" Value="#1C4587"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
