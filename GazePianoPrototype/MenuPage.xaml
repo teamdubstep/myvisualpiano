@@ -10,7 +10,7 @@
     gaze:GazeInput.Interaction="Enabled"
     Background="#1C4587">
 
-    <Grid Margin="100">
+    <Grid Margin="80">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -19,9 +19,11 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="20">
+            <Grid Grid.Column="1" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
@@ -32,7 +34,7 @@
                     <Image Stretch="Uniform" Source="Assets/home.png" />
                 </Button>
             </Grid>
-            <Grid Grid.Column="1" Margin="20">
+            <Grid Grid.Column="2" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
@@ -47,9 +49,11 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="20">
+            <Grid Grid.Column="1" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
@@ -60,7 +64,7 @@
                     <Image Stretch="Uniform" Source="Assets/help.png" />
                 </Button>
             </Grid>
-            <Grid Grid.Column="1" Margin="20">
+            <Grid Grid.Column="2" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
@@ -74,9 +78,9 @@
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1" Margin="20">
                 <Grid.RowDefinitions>
