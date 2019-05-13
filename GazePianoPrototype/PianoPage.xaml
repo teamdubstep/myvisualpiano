@@ -41,11 +41,15 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveDown_Click"/>
-            <Button Grid.Column="1" Content="Minor" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MinorMode_Click" x:Name="MinorModeButton"/>
+            <Button Grid.Column="1" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MinorMode_Click" x:Name="MinorModeButton">
+                <TextBlock TextWrapping="WrapWholeWords">Minor Chord</TextBlock>
+            </Button>
             <Button Grid.Column="2" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="Home_Click">
                 <Image Source="Assets/home.png"></Image>
             </Button>
-            <Button Grid.Column="3" Content="Major" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MajorClick_Click" x:Name="MajorModeButton"/>
+            <Button Grid.Column="3" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="MajorClick_Click" x:Name="MajorModeButton">
+                <TextBlock TextWrapping="WrapWholeWords">Major Chord</TextBlock>
+            </Button>
             <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="00:00:00.75" Click="OctaveUp_Click"/>
 
         </Grid>
