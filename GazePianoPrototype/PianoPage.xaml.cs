@@ -151,6 +151,8 @@
             R1.Tag = key.Notes[6];
             R2.Tag = key.Notes[7];
             //R3.Tag = key.Notes[8];
+
+            this.CurrentKey.Text = key.Name;
         }
 
         /// <summary>
