@@ -48,6 +48,8 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
+
+            <x:String x:Key="pianoFunctionsDwell">00:00:00.75</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
