@@ -31,7 +31,9 @@
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Return Home" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="HomeButtonClick" 
                                      gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/home.png" />
+                    <Viewbox>
+                        <SymbolIcon Symbol="Home" />
+                    </Viewbox>
                 </Button>
             </Grid>
             <Grid Grid.Column="2" Margin="20">
@@ -42,7 +44,7 @@
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Record" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick" IsEnabled="False"
                                     gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/record.png" />
+                    <BitmapIcon UriSource="Assets/record.png" />
                 </Button>
             </Grid>
         </Grid>
@@ -61,7 +63,9 @@
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick" IsEnabled="False"
                                  gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/help.png" />
+                    <Viewbox>
+                        <SymbolIcon Symbol="Help" />
+                    </Viewbox>
                 </Button>
             </Grid>
             <Grid Grid.Column="2" Margin="20">
@@ -72,7 +76,9 @@
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Change Keys" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="KeySelectButtonClick"
                                  gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/change_keys.png" />
+                    <Viewbox>
+                        <SymbolIcon Symbol="Audio" />
+                    </Viewbox>
                 </Button>
             </Grid>
         </Grid>
@@ -90,7 +96,7 @@
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Close" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="CloseButtonClick"
                                     gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/close.png" />
+                    <BitmapIcon UriSource="Assets/close.png" />
                 </Button>
             </Grid>
         </Grid>
