@@ -152,9 +152,11 @@
     <None Include="GazePianoPrototype_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\change_keys.png" />
     <Content Include="Assets\close.png" />
     <Content Include="Assets\help.png" />
     <Content Include="Assets\home.png" />
+    <Content Include="Assets\menu_icon.png" />
     <Content Include="Assets\play_music.png" />
     <Content Include="Assets\record.png" />
     <Content Include="Assets\view_records.png" />
@@ -172,17 +174,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="KeySelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MajorMinorSelector.xaml">
-      <SubType>Designer</SubType>
+	<Page Include="KeySelector.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MajorMinorSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MenuPage.xaml">
       <SubType>Designer</SubType>

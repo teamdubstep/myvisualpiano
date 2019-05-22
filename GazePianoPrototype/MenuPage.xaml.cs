@@ -32,28 +32,27 @@
 
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Home button click");
             MenuResults.displayMenu = true;
-            //(Window.Current.Content as Frame)?.Navigate(typeof(MainPage), null);
             this.Frame.Navigate(typeof(MainPage));
         }
 
         private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Help button click");
             MenuResults.displayMenu = true;
         }
 
         private void RecordButtonClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Record button click");
             MenuResults.displayMenu = true;
+        }
+
+        private void KeySelectButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(KeySelector));
         }
 
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Close button click");
-            //this.Frame.Navigate(typeof(MainPage));
             MenuResults.displayMenu = true;
             this.Frame.GoBack();
         }

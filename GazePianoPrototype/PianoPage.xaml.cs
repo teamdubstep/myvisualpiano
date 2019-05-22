@@ -132,25 +132,27 @@
                 throw new ArgumentOutOfRangeException(nameof(index), "Index must be within App.PresetKeys range");
             }
             PresetKey key = App.PresetKeys[index];
-            this.L1.Content = key.DisplayNotes[0];
-            this.L2.Content = key.DisplayNotes[1];
-            this.L3.Content = key.DisplayNotes[2];
-            this.B1.Content = key.DisplayNotes[3];
-            this.B2.Content = key.DisplayNotes[4];
-            this.B3.Content = key.DisplayNotes[5];
-            this.R1.Content = key.DisplayNotes[6];
-            this.R2.Content = key.DisplayNotes[7];
-            this.R3.Content = key.DisplayNotes[8];
+            L1.Content = key.DisplayNotes[0];
+            L2.Content = key.DisplayNotes[1];
+            L3.Content = key.DisplayNotes[2];
+            B1.Content = key.DisplayNotes[3];
+            B2.Content = key.DisplayNotes[4];
+            B3.Content = key.DisplayNotes[5];
+            R1.Content = key.DisplayNotes[6];
+            R2.Content = key.DisplayNotes[7];
+            //R3.Content = key.DisplayNotes[8];
 
-            this.L1.Tag = key.Notes[0];
-            this.L2.Tag = key.Notes[1];
-            this.L3.Tag = key.Notes[2];
-            this.B1.Tag = key.Notes[3];
-            this.B2.Tag = key.Notes[4];
-            this.B3.Tag = key.Notes[5];
-            this.R1.Tag = key.Notes[6];
-            this.R2.Tag = key.Notes[7];
-            this.R3.Tag = key.Notes[8];
+            L1.Tag = key.Notes[0];
+            L2.Tag = key.Notes[1];
+            L3.Tag = key.Notes[2];
+            B1.Tag = key.Notes[3];
+            B2.Tag = key.Notes[4];
+            B3.Tag = key.Notes[5];
+            R1.Tag = key.Notes[6];
+            R2.Tag = key.Notes[7];
+            //R3.Tag = key.Notes[8];
+
+            this.CurrentKey.Text = key.Name;
         }
 
         /// <summary>
@@ -281,6 +283,16 @@
         {
             this.Octave++;
             this.CurrentOctave.Text = "Octave " + this.Octave;
+        }
+
+        /// <summary>
+        /// Handles button click to navigate to the menu page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MenuPage));
         }
 
         /// <summary>

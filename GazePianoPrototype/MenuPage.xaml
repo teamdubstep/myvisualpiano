@@ -8,66 +8,96 @@
     mc:Ignorable="d"
     xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
     gaze:GazeInput.Interaction="Enabled"
+    gaze:GazeInput.DwellDuration="00:00:00.500"
     Background="#1C4587">
 
-    <Grid Margin="100">
+    <Grid Margin="80">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="20">
+            <Grid Grid.Column="1" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Return Home" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="HomeButtonClick" 
-                                     gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/home.png" />
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Viewbox>
+                        <SymbolIcon Symbol="Home" />
+                    </Viewbox>
                 </Button>
             </Grid>
-            <Grid Grid.Column="1" Margin="20">
+            <Grid Grid.Column="2" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Record" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick"
-                                    gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/record.png" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick" IsEnabled="False"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <BitmapIcon UriSource="ms-appx:///Assets/record.png" />
                 </Button>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick"
-                                 gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/help.png" />
-                </Button>
-            </Grid>
             <Grid Grid.Column="1" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick" IsEnabled="False"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Viewbox>
+                        <SymbolIcon Symbol="Help" />
+                    </Viewbox>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Change Keys" FontSize="40" HorizontalAlignment="Center" />
+                <Button Grid.Row="1" Background="#4A86E8" Click="KeySelectButtonClick"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Viewbox>
+                        <SymbolIcon Symbol="Audio" />
+                    </Viewbox>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Margin="20">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Close" FontSize="40" HorizontalAlignment="Center" />
                 <Button Grid.Row="1" Background="#4A86E8" Click="CloseButtonClick"
-                                 gaze:GazeInput.DwellDuration="00:00:00.500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform" Source="Assets/close.png" />
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <BitmapIcon UriSource="Assets/close.png" />
                 </Button>
             </Grid>
         </Grid>
