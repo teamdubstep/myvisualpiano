@@ -1,1 +1,1 @@
-
+My Visual Piano does not transmit any information from your device.  All gaze tracking/ interactions only occur on your local machine.  Please check this privacy policy for changes whenever the application updates.
