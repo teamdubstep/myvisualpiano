@@ -555,7 +555,7 @@
                     break;
                 case RecordingStatus.Recorded:
                     //TODO: Play recording
-                    this.playbackTimer = new Timer(100);
+                    this.playbackTimer = new Timer(100); // Time in ms between timer ticks
                     this.playbackTimer.Elapsed += PlaybackTimer_Elapsed;
                     this.playbackTimer.Start();
                     this.playbackStart = DateTime.Now;
@@ -565,7 +565,7 @@
             }          
         }
 
-        private void PlaybackTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private async void PlaybackTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             TimeSpan currentPosition = DateTime.Now - this.playbackStart;
             IEnumerable<RecordingItem> toPlay = this.recording.RecordingItems.Where(x => !x.Played && x.Timecode < currentPosition);
@@ -573,6 +573,19 @@
             {
                 this.SendNoteToSynth(item.MidiMessage);
                 item.Played = true;
+            }
+
+            // If all items have been played, reset
+            if (!this.recording.RecordingItems.Any(x => !x.Played))
+            {
+                this.playbackTimer.Stop();
+                this.playbackTimer.Dispose();
+                this.recording.ResetPlayedStatus();
+                this.recordingStatus = RecordingStatus.Recorded;
+                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    this.RecordLabel.Glyph = "\uE768"; // Play icon
+                });                
             }
         }
 
