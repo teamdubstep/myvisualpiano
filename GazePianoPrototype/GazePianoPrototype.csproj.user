@@ -4,4 +4,15 @@
     <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
+  <PropertyGroup>
+    <Source>C:\Users\Parker\Downloads\Capstone Tile #4.png</Source>
+    <SmallTileSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</MediumTileSource>
+    <LargeTileSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</LargeTileSource>
+    <AppIconSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</SplashScreenSource>
+    <BadgeLogoSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</PackageLogoSource>
+    <WideTileSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</WideTileSource>
+  </PropertyGroup>
 </Project>
