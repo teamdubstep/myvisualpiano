@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Timers;
     using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
     using Windows.Devices.Enumeration;
     using Windows.Devices.Midi;
@@ -105,7 +106,8 @@
         {
             foreach (byte note in notes)
             {
-                this.synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
+                IMidiMessage msg = new MidiNoteOnMessage(0, note, VELOCITY);
+                this.SendNoteToSynth(msg);
             }
             this.playingNotes = notes;
         }
@@ -119,10 +121,24 @@
             {
                 foreach (byte note in this.playingNotes)
                 {
-                    this.synth.SendMessage(new MidiNoteOffMessage(0, note, VELOCITY));
+                    IMidiMessage msg = new MidiNoteOffMessage(0, note, VELOCITY);
+                    this.SendNoteToSynth(msg);
                 }
 
                 this.playingNotes = null;
+            }
+        }
+
+        /// <summary>
+        /// Sends an IMidiMessage to the current device; records if necessary
+        /// </summary>
+        /// <param name="msg">MidiMessage to send</param>
+        private void SendNoteToSynth(IMidiMessage msg)
+        {
+            this.synth.SendMessage(msg);
+            if (this.recordingStatus == RecordingStatus.Recording)
+            {
+                this.recording.RecordingItems.Add(new RecordingItem(DateTime.Now - this.recordingStart, msg));
             }
         }
 
@@ -488,6 +504,50 @@
 
             byteChord[2] = (byte) (baseNote + 7);
             return byteChord;
-        }        
+        }
+
+        private enum RecordingStatus { None, Recording, Recorded, Playing };
+        private RecordingStatus recordingStatus = RecordingStatus.None;
+        private DateTime recordingStart;
+        Timer playbackTimer;
+        private DateTime playbackStart;
+        private RecordingLayer recording;
+
+        private void Record_Click(object sender, RoutedEventArgs e)
+        {
+            switch (this.recordingStatus)
+            {
+                case RecordingStatus.None:
+                    this.recording = new RecordingLayer();                  
+                    this.recordingStart = DateTime.Now;
+                    this.recordingStatus = RecordingStatus.Recording;
+                    this.RecordLabel.Glyph = "\uE71A"; // Stop icon
+                    break;
+                case RecordingStatus.Recording:
+                    this.recordingStatus = RecordingStatus.Recorded;
+                    this.RecordLabel.Glyph = "\uE768"; // Play icon
+                    break;
+                case RecordingStatus.Recorded:
+                    //TODO: Play recording
+                    this.playbackTimer = new Timer(100);
+                    this.playbackTimer.Elapsed += PlaybackTimer_Elapsed;
+                    this.playbackTimer.Start();
+                    this.playbackStart = DateTime.Now;
+                    this.recordingStatus = RecordingStatus.Playing;
+                    this.RecordLabel.Glyph = "\uE7F6"; // Headphones icon
+                    break;
+            }          
+        }
+
+        private void PlaybackTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            TimeSpan currentPosition = DateTime.Now - this.playbackStart;
+            IEnumerable<RecordingItem> toPlay = this.recording.RecordingItems.Where(x => !x.Played && x.Timecode < currentPosition);
+            foreach (RecordingItem item in toPlay)
+            {
+                this.SendNoteToSynth(item.MidiMessage);
+                item.Played = true;
+            }
+        }
     }
 }
