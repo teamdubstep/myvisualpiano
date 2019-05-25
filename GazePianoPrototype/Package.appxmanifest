@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="b33e74d2-96ac-4c80-bad8-aad9fad15003" Publisher="CN=Parker" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="b33e74d2-96ac-4c80-bad8-aad9fad15003" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="6660ParkerReno.net.MyVisualPiano" Publisher="CN=D945F626-06AD-4F0D-B817-0B8ED5EB85A3" Version="1.0.3.0" />
+  <mp:PhoneIdentity PhoneProductId="a1e2ce77-efb8-4254-bf28-5a55219425aa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>MyVisualPiano</DisplayName>
-    <PublisherDisplayName>Parker</PublisherDisplayName>
+    <DisplayName>My Visual Piano</DisplayName>
+    <PublisherDisplayName>ParkerReno.net</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -16,14 +16,13 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GazePianoPrototype.App">
       <uap:VisualElements DisplayName="My Visual Piano" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="#38b6ff" Description="Realtime gaze driven piano-like instrument">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#38b6ff"/>
       </uap:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
-    <Capability Name="internetClient" />
     <DeviceCapability Name="gazeInput" />
   </Capabilities>
 </Package>

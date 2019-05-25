@@ -14,5 +14,17 @@
     <BadgeLogoSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</BadgeLogoSource>
     <PackageLogoSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</PackageLogoSource>
     <WideTileSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</WideTileSource>
+    <UapAppxPackageBuildMode>StoreOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>True</PackageOptionalProjectsInIdeBuilds>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
   </PropertyGroup>
 </Project>
