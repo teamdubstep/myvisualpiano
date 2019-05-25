@@ -547,20 +547,19 @@
                     this.recording = new RecordingLayer();                  
                     this.recordingStart = DateTime.Now;
                     this.recordingStatus = RecordingStatus.Recording;
-                    this.RecordLabel.Glyph = "\uE71A"; // Stop icon
+                    //this.RecordLabel.Glyph = "\uE71A"; // Stop icon
                     break;
                 case RecordingStatus.Recording:
                     this.recordingStatus = RecordingStatus.Recorded;
-                    this.RecordLabel.Glyph = "\uE768"; // Play icon
+                    //this.RecordLabel.Glyph = "\uE768"; // Play icon
                     break;
                 case RecordingStatus.Recorded:
-                    //TODO: Play recording
                     this.playbackTimer = new Timer(100); // Time in ms between timer ticks
                     this.playbackTimer.Elapsed += PlaybackTimer_Elapsed;
                     this.playbackTimer.Start();
                     this.playbackStart = DateTime.Now;
                     this.recordingStatus = RecordingStatus.Playing;
-                    this.RecordLabel.Glyph = "\uE7F6"; // Headphones icon
+                    //this.RecordLabel.Glyph = "\uE7F6"; // Headphones icon
                     break;
             }          
         }
@@ -582,10 +581,10 @@
                 this.playbackTimer.Dispose();
                 this.recording.ResetPlayedStatus();
                 this.recordingStatus = RecordingStatus.Recorded;
-                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    this.RecordLabel.Glyph = "\uE768"; // Play icon
-                });                
+                //await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                //{
+                //    this.RecordLabel.Glyph = "\uE768"; // Play icon
+                //});                
             }
         }
 
