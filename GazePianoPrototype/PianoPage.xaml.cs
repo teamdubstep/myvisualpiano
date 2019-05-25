@@ -228,8 +228,8 @@
         /// <summary>
         /// Abstracted button handling so either touch or gaze input can be used
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="start"></param>
+        /// <param name="sender">Button that was pressed/gazed/whatever</param>
+        /// <param name="start">True if starting note, false if stopping note</param>
         private void ButtonNoteTranslator(object sender, bool start)
         {
             Button button = sender as Button;
