@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="6660ParkerReno.net.MyVisualPiano" Publisher="CN=D945F626-06AD-4F0D-B817-0B8ED5EB85A3" Version="1.0.3.0" />
+  <Identity Name="6660ParkerReno.net.MyVisualPiano" Publisher="CN=Parker" Version="1.0.3.0" />
   <mp:PhoneIdentity PhoneProductId="a1e2ce77-efb8-4254-bf28-5a55219425aa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>My Visual Piano</DisplayName>
