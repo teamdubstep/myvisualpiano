@@ -4,4 +4,27 @@
     <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
+  <PropertyGroup>
+    <Source>C:\Users\Parker\Desktop\SplashIcon.png</Source>
+    <SmallTileSource>C:\Users\Parker\Desktop\App Icon 1240x1240px.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Parker\Desktop\App Icon 1240x1240px.png</MediumTileSource>
+    <LargeTileSource>C:\Users\Parker\Desktop\App Icon 1240x1240px.png</LargeTileSource>
+    <AppIconSource>C:\Users\Parker\Desktop\App Icon 1240x1240px.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Parker\Desktop\SplashIcon.png</SplashScreenSource>
+    <BadgeLogoSource>C:\Users\Parker\Downloads\Capstone Tile #4.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\Parker\Desktop\App Icon 1240x1240px.png</PackageLogoSource>
+    <WideTileSource>C:\Users\Parker\Desktop\App Icon Wide Tile 1240x600px.png</WideTileSource>
+    <UapAppxPackageBuildMode>StoreOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
 </Project>
