@@ -43,7 +43,7 @@
 
         <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="D" Tag="D" Click="Button_Click"/>
         <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="D&#x0266F;" Tag="D#" Click="Button_Click"/>
-        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Db" Tag="Db" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="D&#x0266D;" Tag="Db" Click="Button_Click"/>
 
         <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="E" Tag="E" Click="Button_Click"/>
         <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="E&#x0266D;" Tag="Eb" Click="Button_Click"/>
