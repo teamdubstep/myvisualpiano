@@ -27,31 +27,31 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="Select A Key" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="Select a Key" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center"/>
         
-        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="A" Click="Button_Click"/>
-        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="A#" Click="Button_Click"/>
-        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Ab" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="A" Tag="A" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="A&#x0266F;" Tag="A#" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="A&#x0266D;" Tag="Ab" Click="Button_Click"/>
 
-        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="B" Click="Button_Click"/>
-        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="Bb" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="B" Tag="B" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="B&#x0266D;" Tag="Bb" Click="Button_Click"/>
 
-        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="C" Click="Button_Click"/>
-        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="C#" Click="Button_Click"/>
-        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Cb" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="C" Tag="C" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="C&#x0266F;" Tag="C#" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="C&#x0266D;" Tag="Cb" Click="Button_Click"/>
 
-        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="D" Click="Button_Click"/>
-        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="D#" Click="Button_Click"/>
-        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Db" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource KeySelectionButton}" Content="D" Tag="D" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource KeySelectionButton}" Content="D&#x0266F;" Tag="D#" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource KeySelectionButton}" Content="Db" Tag="Db" Click="Button_Click"/>
 
-        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="E" Click="Button_Click"/>
-        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="Eb" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="E" Tag="E" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="E&#x0266D;" Tag="Eb" Click="Button_Click"/>
 
-        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="F" Click="Button_Click"/>
-        <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="F#" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="F" Tag="F" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="F&#x0266F;" Tag="F#" Click="Button_Click"/>
 
-        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="G" Click="Button_Click"/>
-        <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="G#" Click="Button_Click"/>
-        <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource KeySelectionButton}" Content="Gb" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource KeySelectionButton}" Content="G" Tag="G" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource KeySelectionButton}" Content="G&#x0266F;" Tag="G#" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource KeySelectionButton}" Content="G&#x0266D;" Tag="Gb" Click="Button_Click"/>
     </Grid>
 </Page>

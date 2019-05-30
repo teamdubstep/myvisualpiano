@@ -28,8 +28,9 @@
             }
             this.Name = name;
             this.Notes = notes;
-            // remove +/- octave indicators from display notes 
-            this.DisplayNotes = this.Notes.Select(note => note.Replace("+", string.Empty).Replace("-", string.Empty)).ToArray();
+            // remove +/- octave indicators from display notes and replace #/b with unicode escape sequences for sharps/flats
+            this.DisplayNotes = this.Notes.Select(note => note.Replace("+", string.Empty).Replace("-", string.Empty)
+                                                              .Replace("#", "\u266f").Replace("b", "\u266D")).ToArray();
         }
 
         public PresetKey(string name, string[] notes, string[] displayNotes)

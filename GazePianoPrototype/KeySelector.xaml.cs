@@ -30,7 +30,7 @@ namespace GazePianoPrototype
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button selectedButton = sender as Button;
-            string selectedNote = selectedButton.Content as string;
+            string selectedNote = selectedButton.Tag as string;
 
             this.Frame.Navigate(typeof(MajorMinorSelector), selectedNote);
         }

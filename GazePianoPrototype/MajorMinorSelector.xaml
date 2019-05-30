@@ -14,13 +14,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{ThemeResource HeaderTextBlockStyle}" Text="Select A Key" HorizontalAlignment="Center"/>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Back" Style="{StaticResource MajorMinorButton}" Click="Back_Click"/>
-            <Button x:Name="MinorButton" Content="Minor" Style="{StaticResource MajorMinorButton}" Click="Minor_Clicked"/>
-            <Button x:Name="MajorButton" Content="Major" Style="{StaticResource MajorMinorButton}" Click="Major_Clicked"/>
-        </StackPanel>
+        <TextBlock Grid.Row="0" Style="{ThemeResource HeaderTextBlockStyle}" Text="Select a Key" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Back" Style="{StaticResource MajorMinorButton}" Click="Back_Click"/>
+            <Button Grid.Column="1" x:Name="MinorButton" Content="Minor" Style="{StaticResource MajorMinorButton}" Click="Minor_Clicked"/>
+            <Button Grid.Column="2" x:Name="MajorButton" Content="Major" Style="{StaticResource MajorMinorButton}" Click="Major_Clicked"/>
+        </Grid>
     </Grid>
 </Page>
