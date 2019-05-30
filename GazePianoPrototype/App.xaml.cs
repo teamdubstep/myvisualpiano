@@ -50,7 +50,7 @@
                 new PresetKey("D minor", new string[] { "D", "E", "F", "G", "A", "Bb", "C+", "D+", string.Empty }),
                 new PresetKey("Bb major", new string[] { "Bb-", "C", "D", "Eb", "F", "G", "A", "Bb", string.Empty }),
                 new PresetKey("G minor", new string[] { "G", "A", "Bb", "C+", "D+", "Eb+", "F+", "G+", string.Empty }),
-                new PresetKey("Eb major", new string[] { "Eb", "F", "G", "Ab", "Bb", "C", "D", "Eb", string.Empty }),
+                new PresetKey("Eb major", new string[] { "Eb", "F", "G", "Ab", "Bb", "C+", "D+", "Eb+", string.Empty }),
                 new PresetKey("C minor", new string[] { "C", "D", "Eb", "F", "G", "Ab", "Bb", "C+", string.Empty }),
                 new PresetKey("Ab major", new string[] { "Ab", "Bb", "C+", "Db+", "Eb+", "F+", "G+", "Ab+", string.Empty }),
                 new PresetKey("F minor", new string[] { "F", "G", "Ab", "Bb", "C+", "Db+", "Eb+", "F+", string.Empty }),
