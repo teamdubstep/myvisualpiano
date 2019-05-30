@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     xmlns:gaze="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
     gaze:GazeInput.Interaction="Enabled"
-    gaze:GazeInput.DwellDuration="00:00:00.500"
+    gaze:GazeInput.DwellDuration="00:00:00.75"
     Background="#1C4587">
 
     <Grid Margin="80">

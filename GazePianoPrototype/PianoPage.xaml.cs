@@ -153,7 +153,7 @@
             this.R2.Tag = key.Notes[7];
             //R3.Tag = key.Notes[8];
 
-            this.CurrentKey.Text = key.Name;
+            this.CurrentKey.Text = key.Name.Replace("#", "\u266f").Replace("b", "\u266D");
 
             // Get keys ready for touch control
             this.L1.AddHandler(PointerPressedEvent, new PointerEventHandler(this.ButtonPressed), true);
