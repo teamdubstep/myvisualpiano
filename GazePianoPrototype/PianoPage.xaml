@@ -42,7 +42,12 @@
 
             <Button Grid.Column="0" Content="O-" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}" Click="OctaveDown_Click"/>
             <Button Grid.Column="1" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}" Click="MinorMode_Click" x:Name="MinorModeButton">
-                <TextBlock TextWrapping="WrapWholeWords">Minor Chord</TextBlock>
+                <Viewbox>
+                    <StackPanel>
+                        <TextBlock>Minor</TextBlock>
+                        <TextBlock>Chord</TextBlock>
+                    </StackPanel>
+                </Viewbox>
             </Button>
             <Button Grid.Column="2" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}" Click="Home_Click">
                 <Viewbox>
@@ -50,7 +55,12 @@
                 </Viewbox>
             </Button>
             <Button Grid.Column="3" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}" Click="MajorClick_Click" x:Name="MajorModeButton">
-                <TextBlock TextWrapping="WrapWholeWords">Major Chord</TextBlock>
+                <Viewbox>
+                    <StackPanel>
+                        <TextBlock>Major</TextBlock>
+                        <TextBlock>Chord</TextBlock>
+                    </StackPanel>
+                </Viewbox>
             </Button>
             <Button Grid.Column="4" Content="O+" Style="{StaticResource ModeButton}" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}" Click="OctaveUp_Click"/>
 
