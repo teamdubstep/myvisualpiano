@@ -17,89 +17,93 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Return Home" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="HomeButtonClick" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Return Home" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="HomeButtonClick" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Viewbox>
-                        <SymbolIcon Symbol="Home" />
-                    </Viewbox>
-                </Button>
-            </Grid>
-            <Grid Grid.Column="2" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Record" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick" IsEnabled="False"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <BitmapIcon UriSource="ms-appx:///Assets/record.png" />
-                </Button>
-            </Grid>
+                <Viewbox  Margin="15">
+                    <SymbolIcon Symbol="Home" />
+                </Viewbox>
+            </Button>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick" IsEnabled="False"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Viewbox>
-                        <SymbolIcon Symbol="Help" />
-                    </Viewbox>
-                </Button>
-            </Grid>
-            <Grid Grid.Column="2" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Change Keys" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="KeySelectButtonClick"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Viewbox>
-                        <SymbolIcon Symbol="Audio" />
-                    </Viewbox>
-                </Button>
-            </Grid>
+        <Grid Grid.Column="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Resume" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="CloseButtonClick"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Viewbox Margin="15">
+                    <SymbolIcon Symbol="Play" />
+                </Viewbox>
+            </Button>
+            
         </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Margin="20">
-                <Grid.RowDefinitions>
-                        <RowDefinition Height="60" />
-                        <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Close" FontSize="40" HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Background="#4A86E8" Click="CloseButtonClick"
+        <Grid Grid.Row="1" Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Record" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="RecordButtonClick" IsEnabled="False"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <BitmapIcon UriSource="Assets/close.png" />
-                </Button>
-            </Grid>
+
+                <Viewbox Margin="15">
+                    <SymbolIcon Symbol="Target"/>
+                </Viewbox>
+            </Button>
+            
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Change Keys" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="KeySelectButtonClick"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox Margin="15">
+                    <SymbolIcon Symbol="Audio" />
+                </Viewbox>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Help" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="HelpButtonClick" IsEnabled="False"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox Margin="15">
+                    <SymbolIcon Symbol="Help" />
+                </Viewbox>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="#00FFFF" Text="Exit App" FontSize="40" HorizontalAlignment="Center" />
+            <Button Grid.Row="1" Background="#4A86E8" Click="ExitButtonClick"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox Margin="15">
+                    <SymbolIcon Symbol="Cancel" />
+                </Viewbox>
+            </Button>
         </Grid>
     </Grid>
 </Page>

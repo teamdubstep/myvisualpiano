@@ -56,5 +56,10 @@
             MenuResults.displayMenu = true;
             this.Frame.GoBack();
         }
+
+        private void ExitButtonClick(object sender, RoutedEventArgs e)
+        {
+            App.Current.Exit();
+        }
     }
 }
