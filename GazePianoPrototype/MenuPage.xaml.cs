@@ -1,5 +1,6 @@
 ﻿namespace GazePianoPrototype
 {
+    using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -16,12 +17,8 @@
     using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Navigation;
 
-    class MenuResults
-    {
-        public static Boolean displayMenu = true;
-    }
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Menu/options page for My Visual Piano
     /// </summary>
     public sealed partial class MenuPage : Page
     {
@@ -30,36 +27,75 @@
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Navigates to home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
-            MenuResults.displayMenu = true;
+
             this.Frame.Navigate(typeof(MainPage));
         }
 
+        /// <summary>
+        /// Navigates to help page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
-            MenuResults.displayMenu = true;
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Starts recording
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RecordButtonClick(object sender, RoutedEventArgs e)
         {
-            MenuResults.displayMenu = true;
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Navigates to key selection page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeySelectButtonClick(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(KeySelector));
         }
 
+        /// <summary>
+        /// Closes this menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
-            MenuResults.displayMenu = true;
             this.Frame.GoBack();
         }
 
+        /// <summary>
+        /// Closes the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             App.Current.Exit();
+        }
+
+        /// <summary>
+        /// Toggles Gaze Pointer on/off
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToggleGazeDotClick(object sender, RoutedEventArgs e)
+        {
+            GazeInput.SetIsCursorVisible(this, !GazeInput.GetIsCursorVisible(this));
         }
     }
 }
