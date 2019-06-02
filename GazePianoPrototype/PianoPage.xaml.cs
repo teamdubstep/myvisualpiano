@@ -6,10 +6,12 @@
     using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
     using Windows.Devices.Enumeration;
     using Windows.Devices.Midi;
+    using Windows.UI;
     using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Navigation;
 
     /// <summary>
@@ -42,12 +44,36 @@
             }
             set
             {
-                if (value < 0 || value > 7)
+                if (value < 1 || value > 7)
                 {
                     return;
                 }
                 else
                 {
+                    switch (value)
+                    {
+                        case 1:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 13, 46, 122));
+                            break;
+                        case 2:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 17, 54, 137));
+                            break;
+                        case 3:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 26, 66, 158));
+                            break;
+                        case 4:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 31, 74, 173));
+                            break;
+                        case 5:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 38, 85, 193));
+                            break;
+                        case 6:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 44, 92, 204));
+                            break;
+                        case 7:
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 52, 102, 219));
+                            break;
+                    }
                     _octave = value;
                 }
             }
