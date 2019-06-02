@@ -22,9 +22,9 @@
 
         public PresetKey(string name, string[] notes)
         {
-            if (notes.Length != 9)
+            if (notes.Length != 8)
             {
-                throw new ArgumentException("Preset keys must have an array length of 9 (nulls are acceptable)");
+                throw new ArgumentException("Preset keys must have an array length of 8 (nulls are acceptable)");
             }
             this.Name = name;
             this.Notes = notes;
