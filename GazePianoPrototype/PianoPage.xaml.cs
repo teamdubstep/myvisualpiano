@@ -56,22 +56,22 @@
                             this.Background = new SolidColorBrush(Color.FromArgb(255, 13, 46, 122));
                             break;
                         case 2:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 43, 88, 191));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 17, 54, 137));
                             break;
                         case 3:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 48, 99, 212));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 26, 66, 158));
                             break;
                         case 4:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 56, 115, 220));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 31, 74, 173));
                             break;
                         case 5:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 75, 130, 245));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 38, 85, 193));
                             break;
                         case 6:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 112, 150, 239));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 44, 92, 204));
                             break;
                         case 7:
-                            this.Background = new SolidColorBrush(Color.FromArgb(255, 135, 160, 225));
+                            this.Background = new SolidColorBrush(Color.FromArgb(255, 52, 102, 219));
                             break;
                     }
                     _octave = value;
