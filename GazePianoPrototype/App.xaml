@@ -20,7 +20,7 @@
             </Style>
 
             <Style TargetType="Button" x:Key="NoteButton">
-                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
                 <Setter Property="FontSize" Value="60"/>
@@ -32,6 +32,7 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
                 <Setter Property="FontSize" Value="60"/>
+                <Setter Property="Margin" Value="12"/>
             </Style>
 
             <Style TargetType="Button" x:Key="SelectedModeButton" BasedOn="{StaticResource ModeButton}">
@@ -50,7 +51,7 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
-            <x:String x:Key="pianoFunctionsDwell">00:00:00.75</x:String>
+            <x:String x:Key="pianoFunctionsDwell">00:00:00.7</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
