@@ -29,8 +29,10 @@ Abstract: According to the ALS Association, an average of 15 people are diagnose
 
 ### Detailed My Visual Piano Guide
 
-- Look at *Play Music* button and dwell until next screen shows up
-- Then *Select a Key* by looking and dwelling at the key the music you want to play is in
+*Note: All buttons have gaze and touch input enabled. Users with eye trackers select buttons by looking and dwelling on them. This app is not limited to those with eye trackers only and buttons can also be activated by touch.*
+
+- Select *Play Music* button until next screen shows up
+- Next, *Select a Key* by choosing a key the music you want to play is in
 - Then select *Major* or *Minor* to complete key selection
 - Once in the piano page there are multiple buttons: note and mode
   - Note (grey border): Play piano notes
