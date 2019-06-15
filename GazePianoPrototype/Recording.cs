@@ -102,7 +102,7 @@
             IEnumerable<RecordingItem> toPlay = this.recordingItems.Where(x => !x.Played && x.Timecode < currentPosition);
             foreach (RecordingItem item in toPlay)
             {
-                this.PlayNote(item.MidiMessage);
+                this.PlayNote?.Invoke(item.MidiMessage);
                 item.Played = true;
             }
 
@@ -113,7 +113,7 @@
                 this.playbackTimer.Dispose();
                 this.recordingItems.ForEach(x => x.Played = false);
                 this.Status = RecordingStatus.Recorded;
-                this.PlaybackComplete();
+                this.PlaybackComplete?.Invoke();
             }
         }
     }
