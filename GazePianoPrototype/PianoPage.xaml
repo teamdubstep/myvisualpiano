@@ -81,7 +81,10 @@
                 <FontIcon x:Name="Recording3Label" FontFamily="Segoe MDL2 Assets" Glyph="&#xE7C8;" FontSize="48" Foreground="Red" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}"/>
             </Button>
 
-            <Button Grid.Column="3" Style="{StaticResource NoteButton}" Click="PlayAll_Click"></Button>
+            <Button Grid.Column="3" Style="{StaticResource NoteButton}" Click="PlayAll_Click">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC58;" FontSize="48" gaze:GazeInput.DwellDuration="{StaticResource pianoFunctionsDwell}"/>
+
+            </Button>
         </Grid>
 
 

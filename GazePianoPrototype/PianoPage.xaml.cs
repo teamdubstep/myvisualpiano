@@ -93,6 +93,7 @@
             LoadNotesAndChords();
             this.Octave = 3;
             this.CurrentOctave.Text = "Octave " + this.Octave;
+            this.RecordingControlsGrid.Visibility = App.RecordingControlsVisibility;
 
         }
 

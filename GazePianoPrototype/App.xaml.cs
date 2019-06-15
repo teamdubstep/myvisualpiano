@@ -19,6 +19,11 @@
         public static List<PresetKey> PresetKeys { get; private set; }
 
         /// <summary>
+        /// Determines whether recording controls are visible/ enabled
+        /// </summary>
+        public static Visibility RecordingControlsVisibility { get; set; } = Visibility.Collapsed;
+
+        /// <summary>
         /// Recording layer #1
         /// </summary>
         public static Recording Recording1 { get; set; }
