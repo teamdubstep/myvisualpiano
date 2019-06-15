@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    [Obsolete("Replaced by Recording", false)]
     public class RecordingLayer
     {
         public List<RecordingItem> RecordingItems { get; private set; }

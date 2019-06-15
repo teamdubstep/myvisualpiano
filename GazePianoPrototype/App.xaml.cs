@@ -19,6 +19,21 @@
         public static List<PresetKey> PresetKeys { get; private set; }
 
         /// <summary>
+        /// Recording layer #1
+        /// </summary>
+        public static Recording Recording1 { get; set; }
+
+        /// <summary>
+        /// Recording layer #2
+        /// </summary>
+        public static Recording Recording2 { get; set; }
+
+        /// <summary>
+        /// Recording layer #3
+        /// </summary>
+        public static Recording Recording3 { get; set; }
+
+        /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
