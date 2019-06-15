@@ -25,10 +25,14 @@
 
         public delegate void PlayNoteEventHandler(IMidiMessage args);
 
+        public delegate void PlaybackCompleteEventHandler();
+
         /// <summary>
         /// Event to subscribe to for MIDI playback
         /// </summary>
         public event PlayNoteEventHandler PlayNote;
+
+        public event PlaybackCompleteEventHandler PlaybackComplete;
 
         private readonly List<RecordingItem> recordingItems;
         private Timer playbackTimer;
@@ -109,6 +113,7 @@
                 this.playbackTimer.Dispose();
                 this.recordingItems.ForEach(x => x.Played = false);
                 this.Status = RecordingStatus.Recorded;
+                this.PlaybackComplete();
             }
         }
     }

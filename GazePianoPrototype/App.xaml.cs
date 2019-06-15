@@ -21,7 +21,7 @@
         /// <summary>
         /// Determines whether recording controls are visible/ enabled
         /// </summary>
-        public static Visibility RecordingControlsVisibility { get; set; } = Visibility.Collapsed;
+        public static Visibility RecordingControlsVisibility { get; set; }
 
         /// <summary>
         /// Recording layer #1
@@ -47,6 +47,10 @@
             this.RequestedTheme = ApplicationTheme.Dark;
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            RecordingControlsVisibility = Visibility.Collapsed;
+            Recording1 = new Recording();
+            Recording2 = new Recording();
+            Recording3 = new Recording();
 
             PresetKeys = new List<PresetKey>
             {

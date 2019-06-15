@@ -55,7 +55,14 @@
         /// <param name="e"></param>
         private void RecordButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (App.RecordingControlsVisibility == Visibility.Collapsed)
+            {
+                App.RecordingControlsVisibility = Visibility.Visible;
+            }
+            else
+            {
+                App.RecordingControlsVisibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -96,6 +103,21 @@
         private void ToggleGazeDotClick(object sender, RoutedEventArgs e)
         {
             GazeInput.SetIsCursorVisible(this, !GazeInput.GetIsCursorVisible(this));
+        }
+
+        private void ClearRec1_Click(object sender, RoutedEventArgs e)
+        {
+            App.Recording1 = new Recording();
+        }
+
+        private void ClearRec2_Click(object sender, RoutedEventArgs e)
+        {
+            App.Recording2 = new Recording();
+        }
+
+        private void ClearRec3_Click(object sender, RoutedEventArgs e)
+        {
+            App.Recording3 = new Recording();
         }
     }
 }

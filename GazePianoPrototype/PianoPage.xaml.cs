@@ -95,6 +95,24 @@
             this.CurrentOctave.Text = "Octave " + this.Octave;
             this.RecordingControlsGrid.Visibility = App.RecordingControlsVisibility;
 
+            App.Recording1.PlayNote += Recording_PlayNote;
+            App.Recording2.PlayNote += Recording_PlayNote;
+            App.Recording3.PlayNote += Recording_PlayNote;
+
+            if (App.Recording1.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording1Label.Glyph = "\uE768";
+            }
+
+            if (App.Recording2.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording2Label.Glyph = "\uE768";
+            }
+
+            if (App.Recording2.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording2Label.Glyph = "\uE768";
+            }
         }
 
         /// <summary>
@@ -134,7 +152,7 @@
             foreach (byte note in notes)
             {
                 IMidiMessage msg = new MidiNoteOnMessage(0, note, VELOCITY);
-                this.SendNoteToSynth(msg);
+                this.SendNoteToSynth(msg, true);
             }
             this.playingNotes = notes;
         }
@@ -149,7 +167,7 @@
                 foreach (byte note in this.playingNotes)
                 {
                     IMidiMessage msg = new MidiNoteOffMessage(0, note, VELOCITY);
-                    this.SendNoteToSynth(msg);
+                    this.SendNoteToSynth(msg, true);
                 }
 
                 this.playingNotes = null;
@@ -160,13 +178,26 @@
         /// Sends an IMidiMessage to the current device; records if necessary
         /// </summary>
         /// <param name="msg">MidiMessage to send</param>
-        private void SendNoteToSynth(IMidiMessage msg)
+        /// <param name="record">Should this message be recorded (if recording)</param>
+        private void SendNoteToSynth(IMidiMessage msg, bool record)
         {
             this.synth.SendMessage(msg);
-            if (this.recordingStatus == RecordingStatus.Recording)
+
+            if (record)
             {
-                this.recording.RecordingItems.Add(new RecordingItem(DateTime.Now - this.recordingStart, msg));
-            }
+                if (App.Recording1.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording1.AddNote(msg);
+                }
+                if (App.Recording2.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording2.AddNote(msg);
+                }
+                if (App.Recording3.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording3.AddNote(msg);
+                }
+            }            
         }
 
         private void LoadPreset(int index)
@@ -216,7 +247,7 @@
             this.R1.AddHandler(PointerPressedEvent, new PointerEventHandler(this.ButtonPressed), true);
             this.R1.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);
             this.R2.AddHandler(PointerPressedEvent, new PointerEventHandler(this.ButtonPressed), true);
-            this.R2.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);            
+            this.R2.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);
         }
 
         /// <summary>
@@ -521,77 +552,73 @@
             // major -> baseNote + 4 + 3
             if (this.CurrentMode == PianoMode.MajorChord)
             {
-                byteChord[1] = (byte) (baseNote + 4);
+                byteChord[1] = (byte)(baseNote + 4);
             }
             // minor -> baseNote + 3 + 4
             else
             {
-                byteChord[1] = (byte) (baseNote + 3);
+                byteChord[1] = (byte)(baseNote + 3);
             }
 
-            byteChord[2] = (byte) (baseNote + 7);
+            byteChord[2] = (byte)(baseNote + 7);
             return byteChord;
         }
 
-        private enum RecordingStatus { None, Recording, Recorded, Playing };
-        private RecordingStatus recordingStatus = RecordingStatus.None;
-        private DateTime recordingStart;
-        Timer playbackTimer;
-        private DateTime playbackStart;
-        private RecordingLayer recording;
-
         private void Record_Click(object sender, RoutedEventArgs e)
         {
-            switch (this.recordingStatus)
+            Button button = sender as Button;
+            FontIcon label = button.Content as FontIcon;
+            Recording recording = null;
+
+            // Figure out which recording to work with
+            switch (button.Tag)
             {
-                case RecordingStatus.None:
-                    this.recording = new RecordingLayer();                  
-                    this.recordingStart = DateTime.Now;
-                    this.recordingStatus = RecordingStatus.Recording;
-                    //this.RecordLabel.Glyph = "\uE71A"; // Stop icon
+                case "Recording1":
+                    recording = App.Recording1;
                     break;
-                case RecordingStatus.Recording:
-                    this.recordingStatus = RecordingStatus.Recorded;
-                    //this.RecordLabel.Glyph = "\uE768"; // Play icon
+                case "Recording2":
+                    recording = App.Recording2;
                     break;
-                case RecordingStatus.Recorded:
-                    this.playbackTimer = new Timer(100); // Time in ms between timer ticks
-                    this.playbackTimer.Elapsed += PlaybackTimer_Elapsed;
-                    this.playbackTimer.Start();
-                    this.playbackStart = DateTime.Now;
-                    this.recordingStatus = RecordingStatus.Playing;
-                    //this.RecordLabel.Glyph = "\uE7F6"; // Headphones icon
+                case "Recording3":
+                    recording = App.Recording3;
                     break;
-            }          
+            }
+
+            switch (recording.Status)
+            {
+                case Recording.RecordingStatus.Blank:
+                    recording.StartRecording();
+                    label.Glyph = "\uE71A"; // Stop icon
+                    break;
+                case Recording.RecordingStatus.Recording:
+                    recording.StopRecording();
+                    label.Glyph = "\uE768"; // Play icon
+                    break;
+                case Recording.RecordingStatus.Recorded:
+                    recording.PlayNote += Recording_PlayNote;
+                    recording.PlaybackComplete += async delegate
+                    {
+                        await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                        {
+                            label.Glyph = "\uE768";
+                        });
+                    };
+                    recording.Play();
+                    label.Glyph = "\uE7F6";
+                    break;
+            }
         }
 
-        private async void PlaybackTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Recording_PlayNote(IMidiMessage message)
         {
-            TimeSpan currentPosition = DateTime.Now - this.playbackStart;
-            IEnumerable<RecordingItem> toPlay = this.recording.RecordingItems.Where(x => !x.Played && x.Timecode < currentPosition);
-            foreach (RecordingItem item in toPlay)
-            {
-                this.SendNoteToSynth(item.MidiMessage);
-                item.Played = true;
-            }
-
-            // If all items have been played, reset
-            if (!this.recording.RecordingItems.Any(x => !x.Played))
-            {
-                this.playbackTimer.Stop();
-                this.playbackTimer.Dispose();
-                this.recording.ResetPlayedStatus();
-                this.recordingStatus = RecordingStatus.Recorded;
-                //await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                //{
-                //    this.RecordLabel.Glyph = "\uE768"; // Play icon
-                //});                
-            }
+            this.SendNoteToSynth(message, false);
         }
 
         private void PlayAll_Click(object sender, RoutedEventArgs e)
         {
-
+            App.Recording1.Play();
+            App.Recording2.Play();
+            App.Recording3.Play();
         }
     }
 }

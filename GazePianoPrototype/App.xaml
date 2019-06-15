@@ -52,6 +52,7 @@
             </Style>
 
             <x:String x:Key="pianoFunctionsDwell">00:00:00.7</x:String>
+            <x:String x:Key="recordButtonsDwell">00:00:00.75</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
