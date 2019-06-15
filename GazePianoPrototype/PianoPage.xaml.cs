@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Timers;
     using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
     using Windows.Devices.Enumeration;
     using Windows.Devices.Midi;
@@ -92,7 +93,26 @@
             LoadNotesAndChords();
             this.Octave = 3;
             this.CurrentOctave.Text = "Octave " + this.Octave;
+            this.RecordingControlsGrid.Visibility = App.RecordingControlsVisibility;
 
+            App.Recording1.PlayNote += Recording_PlayNote;
+            App.Recording2.PlayNote += Recording_PlayNote;
+            App.Recording3.PlayNote += Recording_PlayNote;
+
+            if (App.Recording1.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording1Label.Glyph = "\uE768";
+            }
+
+            if (App.Recording2.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording2Label.Glyph = "\uE768";
+            }
+
+            if (App.Recording2.Status == Recording.RecordingStatus.Recorded)
+            {
+                this.Recording2Label.Glyph = "\uE768";
+            }
         }
 
         /// <summary>
@@ -131,7 +151,8 @@
         {
             foreach (byte note in notes)
             {
-                this.synth.SendMessage(new MidiNoteOnMessage(0, note, VELOCITY));
+                IMidiMessage msg = new MidiNoteOnMessage(0, note, VELOCITY);
+                this.SendNoteToSynth(msg, true);
             }
             this.playingNotes = notes;
         }
@@ -145,11 +166,38 @@
             {
                 foreach (byte note in this.playingNotes)
                 {
-                    this.synth.SendMessage(new MidiNoteOffMessage(0, note, VELOCITY));
+                    IMidiMessage msg = new MidiNoteOffMessage(0, note, VELOCITY);
+                    this.SendNoteToSynth(msg, true);
                 }
 
                 this.playingNotes = null;
             }
+        }
+
+        /// <summary>
+        /// Sends an IMidiMessage to the current device; records if necessary
+        /// </summary>
+        /// <param name="msg">MidiMessage to send</param>
+        /// <param name="record">Should this message be recorded (if recording)</param>
+        private void SendNoteToSynth(IMidiMessage msg, bool record)
+        {
+            this.synth.SendMessage(msg);
+
+            if (record)
+            {
+                if (App.Recording1.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording1.AddNote(msg);
+                }
+                if (App.Recording2.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording2.AddNote(msg);
+                }
+                if (App.Recording3.Status == Recording.RecordingStatus.Recording)
+                {
+                    App.Recording3.AddNote(msg);
+                }
+            }            
         }
 
         private void LoadPreset(int index)
@@ -199,7 +247,7 @@
             this.R1.AddHandler(PointerPressedEvent, new PointerEventHandler(this.ButtonPressed), true);
             this.R1.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);
             this.R2.AddHandler(PointerPressedEvent, new PointerEventHandler(this.ButtonPressed), true);
-            this.R2.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);            
+            this.R2.AddHandler(PointerReleasedEvent, new PointerEventHandler(this.ButtonReleased), true);
         }
 
         /// <summary>
@@ -504,16 +552,73 @@
             // major -> baseNote + 4 + 3
             if (this.CurrentMode == PianoMode.MajorChord)
             {
-                byteChord[1] = (byte) (baseNote + 4);
+                byteChord[1] = (byte)(baseNote + 4);
             }
             // minor -> baseNote + 3 + 4
             else
             {
-                byteChord[1] = (byte) (baseNote + 3);
+                byteChord[1] = (byte)(baseNote + 3);
             }
 
-            byteChord[2] = (byte) (baseNote + 7);
+            byteChord[2] = (byte)(baseNote + 7);
             return byteChord;
-        }        
+        }
+
+        private void Record_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            FontIcon label = button.Content as FontIcon;
+            Recording recording = null;
+
+            // Figure out which recording to work with
+            switch (button.Tag)
+            {
+                case "Recording1":
+                    recording = App.Recording1;
+                    break;
+                case "Recording2":
+                    recording = App.Recording2;
+                    break;
+                case "Recording3":
+                    recording = App.Recording3;
+                    break;
+            }
+
+            switch (recording.Status)
+            {
+                case Recording.RecordingStatus.Blank:
+                    recording.StartRecording();
+                    label.Glyph = "\uE71A"; // Stop icon
+                    break;
+                case Recording.RecordingStatus.Recording:
+                    recording.StopRecording();
+                    label.Glyph = "\uE768"; // Play icon
+                    break;
+                case Recording.RecordingStatus.Recorded:
+                    recording.PlayNote += Recording_PlayNote;
+                    recording.PlaybackComplete += async delegate
+                    {
+                        await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                        {
+                            label.Glyph = "\uE768";
+                        });
+                    };
+                    recording.Play();
+                    label.Glyph = "\uE7F6";
+                    break;
+            }
+        }
+
+        private void Recording_PlayNote(IMidiMessage message)
+        {
+            this.SendNoteToSynth(message, false);
+        }
+
+        private void PlayAll_Click(object sender, RoutedEventArgs e)
+        {
+            App.Recording1.Play();
+            App.Recording2.Play();
+            App.Recording3.Play();
+        }
     }
 }
